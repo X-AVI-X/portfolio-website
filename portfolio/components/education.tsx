@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { education } from "@/lib/data";
+import { education, leadership } from "@/lib/data";
 import { GraduationCap, Award, BookOpen, ExternalLink, Calendar, MapPin } from "lucide-react";
 
 const Education = () => {
@@ -118,6 +118,50 @@ const Education = () => {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                </div>
+
+                {/* Leadership Section */}
+                <div className="mt-16">
+                    <motion.h3
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="text-xs font-bold font-mono uppercase tracking-[0.4em] text-muted-foreground mb-8 text-center"
+                    >
+                        Leadership_&_Activities
+                    </motion.h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {leadership.map((item, index) => (
+                            <motion.div
+                                key={item.organization}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="p-6 rounded-xl border border-border bg-card/20 backdrop-blur-sm card-hover relative group overflow-hidden"
+                            >
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h4 className="font-bold text-lg group-hover:text-primary transition-colors">{item.organization}</h4>
+                                            <p className="text-sm text-muted-foreground font-mono">{item.role}</p>
+                                        </div>
+                                        <span className="text-xs font-mono px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-border/50">
+                                            {item.period}
+                                        </span>
+                                    </div>
+                                    <ul className="space-y-2">
+                                        {item.points.map((point, i) => (
+                                            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                                <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" />
+                                                <span>{point}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>
