@@ -5,6 +5,9 @@ import ExperienceTimeline from "@/components/experience-timeline";
 import BentoGrid from "@/components/bento-grid";
 import Education from "@/components/education";
 import { Contact, Footer } from "@/components/contact-footer";
+import ArchitecturalLeadership from "@/components/architectural-leadership";
+import FeatureSpotlight from "@/components/feature-spotlight";
+import CaseStudy from "@/components/case-study";
 
 export default function Home() {
   return (
@@ -13,6 +16,9 @@ export default function Home() {
       <TerminalHero />
       <SkillsMatrix />
       <ExperienceTimeline />
+      <ArchitecturalLeadership />
+      <FeatureSpotlight />
+      <CaseStudy />
       <BentoGrid />
       <Education />
       <Contact />

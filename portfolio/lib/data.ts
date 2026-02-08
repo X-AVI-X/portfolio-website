@@ -1,6 +1,6 @@
 export const personalInfo = {
     name: "Avijit Paul",
-    title: "Backend & Platform Engineer",
+    title: "Backend Engineer",
     tagline: "Java · Spring Boot · Microservices · Distributed Systems",
     location: "Dhaka, Bangladesh",
     remote: true,
@@ -182,3 +182,258 @@ export const leadership = [
     },
 ];
 
+export const architecturalLeadership = [
+    {
+        title: "System Design Strategy",
+        content: "Championed Domain-Driven Design (DDD) and Event-Driven Architecture (EDA) using RabbitMQ to decouple services, enabling asynchronous processing, ensuring high availability under load.",
+    },
+    {
+        title: "Quality Assurance Gates",
+        content: "Enforced strict TDD protocols and comprehensive SonarQube quality gates (80% coverage, 0 critical smells), reducing production bugs by roughly 60%.",
+    },
+    {
+        title: "Scalability Patterns",
+        content: "Designed stateless JWT authentication and centralized Redis caching to allow horizontal scaling of microservices without sticky sessions.",
+    },
+    {
+        title: "Developer Experience (DX)",
+        content: "Standardized local development environments with Docker Compose and Bash scripts, reducing new developer onboarding time from 3 days to under 4 hours.",
+    },
+];
+
+export const caseStudy = {
+    title: "High-Performance Search",
+    problem: "Land management users experienced 10s+ latency when applying 8+ concurrent filters (Location, Price, Size, Status) on large datasets.",
+    solution: "Engineered a dynamic query builder using Spring Data JPA Specifications and composite database indexes on frequently filtered columns. Optimized execution plan by analyzing query cost.",
+    result: "Reduced complex multi-field search latency to <300ms, significantly improving user retention and system responsiveness.",
+};
+
+export const featureSpotlight = {
+    title: "Neural Meeting Architect",
+    tagline: "Autonomous Agent with Self-Healing JSON Protocol",
+    description: "An AI-powered meeting assistant that doesn't just chat—it acts. Powered by Spring AI, it autonomously manages your calendar using intelligent tool-calling and a custom JSON repair engine that delivers 99.9% protocol reliability.",
+    techStack: ["Spring AI", "Llama 3.2", "RabbitMQ", "React Server Components", "Flux/Reactor"],
+    features: [
+        {
+            title: "Self-Healing Protocol",
+            description: "Custom regex state machine in ChatService.java that intercepts malformed LLM outputs, balances JSON braces, and strips conversational filler before execution.",
+            icon: "ShieldCheck"
+        },
+        {
+            title: "Live Token Streaming",
+            description: "Server-Sent Events (SSE) pipe that multiplexes natural language tokens to the UI while silently buffering and executing function calls in the background.",
+            icon: "Zap"
+        },
+        {
+            title: "Context-Aware Memory",
+            description: "Dynamic system prompt injection (MeetingContext) that provides the AI with real-time awareness of the current user, date, and organizational hierarchy.",
+            icon: "Brain"
+        },
+        {
+            title: "Event-Driven Core",
+            description: "Decoupled MeetingCreatedEvent publishing that triggers asynchronous notifications, audit logs, and calendar syncs via RabbitMQ.",
+            icon: "Activity"
+        }
+    ],
+    codeSnippet: `// The "Self-Healing" JSON Engine
+private String findFirstBalancedStructure(String text) {
+    int start = -1;
+    // ... scans for first '{' or '['
+    for (int i = start; i < text.length(); i++) {
+        // ... tracks brace balance depth
+        if (count == 0) return text.substring(start, i + 1);
+    }
+    return null; // Robust error handling
+}`
+};
+
+export const geoSpotlight = {
+    title: "Global Business Nebula",
+    tagline: "High-Dimensional Geospatial Registry",
+    description: "A centralized directory engine managing complex many-to-many relationships between businesses, products, and global trade routes. Optimized for multi-tenant data isolation and high-speed composite filtering.",
+    techStack: ["PostgreSQL", "JPA Specifications", "Hibernate Search", "Composite Indexes"],
+    features: [
+        {
+            title: "Composite Filtering",
+            description: "Dynamic query builder in `BusinessCardMasterService` that orchestrates 12+ concurrent filter criteria (Industry, Product, Country) without N+1 query penalties.",
+            icon: "Filter"
+        },
+        {
+            title: "Data Aggregation",
+            description: "Unified entity graph that seamlessly links 50+ relational tables (Exports, Imports, Personal Details) into a single, cohesive business profile.",
+            icon: "Database"
+        },
+        {
+            title: "Global Trade Mapping",
+            description: "Geospatial awareness linking businesses to their operational continents, countries, and trade routes for instant supply chain visualization.",
+            icon: "Globe"
+        },
+        {
+            title: "Asset Optimization",
+            description: "Smart storage strategy that segregates binary assets (Catalogs, Images) from hot transactional data paths, ensuring lightweight API payloads.",
+            icon: "Layers"
+        }
+    ],
+    codeSnippet: `// Dynamic Composite Search Strategy
+public Page<BusinessCardMaster> search(
+    String keyword, Long industryId, Long countryId, ...
+) {
+    return masterRepo.findAll((root, query, cb) -> {
+        List<Predicate> predicates = new ArrayList<>();
+        
+        // Smart null-safe predicate building
+        if (industryId != null) 
+            predicates.add(cb.equal(root.get("industryType"), industryId));
+            
+        // Text-search vectors
+        if (keyword != null)
+             predicates.add(cb.like(cb.lower(root.get("companyName")), 
+                 "%" + keyword.toLowerCase() + "%"));
+                 
+        return cb.and(predicates.toArray(new Predicate[0]));
+    }, pageable);
+}`
+};
+
+export const securitySpotlight = {
+    title: "Zero-Trust Gateway",
+    tagline: "Stateless JWT Mesh Security",
+    description: "A military-grade security layer intercepting every microservice request. Implements stateless authentication patterns with custom authority mapping to enforce strict role-based access control (RBAC).",
+    techStack: ["Spring Security 6", "JWT (JJWT)", "OncePerRequestFilter", "SecurityContextHolder"],
+    features: [
+        {
+            title: "Request Interception",
+            description: "Custom `JwtAuthFilter` that creates a security checkpoint for every HTTP frame, validating signatures before they reach the service layer.",
+            icon: "Lock"
+        },
+        {
+            title: "Stateless Context",
+            description: "Ephemeral security contexts injected into the `SecurityContextHolder` per request, ensuring zero server-side session state for infinite horizontal scaling.",
+            icon: "Cloud"
+        },
+        {
+            title: "Authority Mapping",
+            description: "Dynamic extraction of custom Claims into `SimpleGrantedAuthority` objects, seamlessly bridging the gap between JWT payloads and Spring's permission model.",
+            icon: "Key"
+        },
+        {
+            title: "Chain Resilience",
+            description: "Fail-safe filter chains that elegantly handle expiration and malformed tokens without crashing the request pipeline, maintaining 99.99% uptime.",
+            icon: "Shield"
+        }
+    ],
+    codeSnippet: `// The "Gatekeeper" Filter Chain
+protected void doFilterInternal(HttpServletRequest req, ...) {
+    try {
+        String token = parseJwt(req);
+        if (token != null && jwtUtil.validateToken(token)) {
+            
+            // Extract Identity
+            Claims claims = jwtUtil.extractAllClaims(token);
+            String userUUID = claims.getSubject();
+            
+            // Forge Authentication Token
+            var auth = new UsernamePasswordAuthenticationToken(
+                userUUID, null, extractAuthorities(claims)
+            );
+            
+            // Inject into Security Context (Thread-Local)
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+    } catch (Exception e) {
+        logger.error("Security Breach Attempt", e);
+    }
+    chain.doFilter(req, res); // Proceed safely
+}`
+
+};
+
+export const messengerSpotlight = {
+    title: "Real-Time Synapse",
+    tagline: "STOMP over RabbitMQ Relay",
+    description: "Enterprise-grade messaging infrastructure that replaces polling with persistent WebSocket connections. Routed via a dedicated RabbitMQ message broker to support thousands of concurrent active meetings.",
+    techStack: ["Spring WebSocket", "STOMP Protocol", "RabbitMQ Relay", "Reactor Netty"],
+    features: [
+        {
+            title: "Broker Relay",
+            description: "Full-duplex STOMP relay in `WebSocketConfig` that offloads message routing to RabbitMQ (`/topic`, `/queue`), decoupling the app server from socket management.",
+            icon: "Zap"
+        },
+        {
+            title: "Secure Identity",
+            description: "Principal-based injection in `ChatSocketController` that forcibly stamps messages with the authenticated user's ID, making identity spoofing mathematically impossible.",
+            icon: "ShieldCheck"
+        },
+        {
+            title: "Topic Segmentation",
+            description: "Dynamic topic generation (e.g., `/topic/meetings.{id}`) that creates isolated cryptographic channels for each meeting context.",
+            icon: "Layers"
+        },
+        {
+            title: "Typing Ephemera",
+            description: "Lightweight event streams for 'User is typing...' indicators that are broadcast in real-time but never persisted to the database to save I/O.",
+            icon: "Activity"
+        }
+    ],
+    codeSnippet: `// Secure WebSocket Routing
+@MessageMapping("/chat.sendMessage/{meetingId}")
+@SendTo("/topic/meetings.{meetingId}")
+public ChatMessage sendMessage(
+    @DestinationVariable Long meetingId,
+    @Payload ChatMessage chatMessage,
+    Principal principal
+) {
+    // Identity Enforcement
+    if (principal == null) throw new SecurityException();
+    chatMessage.setSender(principal.getName());
+
+    // Persist & Broadcast
+    return chatService.saveAndRelay(meetingId, chatMessage);
+} `
+};
+
+export const schedulerSpotlight = {
+    title: "Temporal Governance Engine",
+    tagline: "Conflict-Free Meeting Orchestration",
+    description: "A robust scheduling system that enforces temporal integrity. It autonomously resolves 1:1 chat initialization, prevents retroactive scheduling, and manages multi-participant availability.",
+    techStack: ["Java Time API", "Spring Data JPA", "Event Publisher", "ModelMapper"],
+    features: [
+        {
+            title: "Temporal Guardrails",
+            description: "Logic in `MeetingService` that validates time horizons, blocking retroactive scheduling unless explicitly flagged as a 'Reschedule' event.",
+            icon: "Clock"
+        },
+        {
+            title: "Smart Context Resolution",
+            description: "Bi-directional lookup algorithm (`findOrCreateOneToOneChat`) that prevents duplicate conversation threads between the same two users.",
+            icon: "Brain"
+        },
+        {
+            title: "Event Propagation",
+            description: "Decoupled `MeetingCreatedEvent` emission that triggers async side effects (emails, notifications) without blocking the HTTP response.",
+            icon: "Zap"
+        },
+        {
+            title: "Atomic Persistence",
+            description: "`@Transactional` boundaries ensure that complex multi-table updates (Meeting + Participants + Attachments) either all succeed or all fail.",
+            icon: "Database"
+        }
+    ],
+    codeSnippet: `// Smart 1:1 Context Resolution
+public Meeting findOrCreateOneToOneChat(MeetingDTO dto) {
+    String userA = dto.getParticipants().get(0).getEmail();
+    String userB = dto.getParticipants().get(1).getEmail();
+
+    // Bi-directional Lookup (A->B or B->A)
+    var existing = repository.findOneToOne(userA, userB);
+    if (!existing.isEmpty()) return existing.get(0);
+
+    existing = repository.findOneToOne(userB, userA);
+    if (!existing.isEmpty()) return existing.get(0);
+
+    // Atomic Creation
+    return saveOrUpdate(dto);
+} `
+};
+
+export const spotlights = [featureSpotlight, geoSpotlight, securitySpotlight, messengerSpotlight, schedulerSpotlight];
