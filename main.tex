@@ -1,0 +1,224 @@
+% ============================================================================
+% RESUME v1.3 - AVIJIT PAUL | ELITE GRAYSCALE EDITION
+% ============================================================================
+% CHANGE LOG:
+% v1.3 (2026-02-03): Final Polish - Elite Tech Standard
+%   - THEME: Switched to 'Grayscale Premium' (Jet Black / Charcoal / Slate Grey)
+%   - FORMAT: Strict 1.2em indent, no horizontal overflow
+%   - SIGNAL: Removed LOC counts to emphasize ownership ("Architected complete service")
+%   - UX: Refined vertical rhythm for maximum readability
+%
+% v1.2.1 (2026-02-03): Added Leadership & Activities, expanded Projects
+% v1.2 (2026-02-03): Added missing critical features (Meeting Scheduler, Chat, PDF Builder)
+%
+% v1.1 (2026-02-03): Complete reconstruction based on codebase + reference docs
+%   - Added quantified production metrics: 100+ users, 35% manual effort reduction
+%   - Incorporated domain complexity: 456-line PurchaseRequisition, 412-line LandSourcing
+%
+% v1.0 (2026-02-03): Initial enhanced version from codebase analysis
+% ============================================================================
+
+\documentclass[a4paper,10pt]{article}
+
+% --- PACKAGES ---
+\usepackage[left=0.5in, right=0.5in, top=0.3in, bottom=0.3in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[default]{lato}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+% --- COLORS ---
+\definecolor{primary}{RGB}{0, 0, 0}       % Jet Black (Headers, Name)
+\definecolor{secondary}{RGB}{30, 30, 30}   % Charcoal (Roles, Titles)
+\definecolor{accent}{RGB}{0, 0, 0}         % Keep accent black for links/sections (Classic Professional)
+\definecolor{datecolor}{RGB}{80, 80, 80}   % Slate Grey (Dates/Locations)
+
+% --- HYPERLINK SETUP ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+}
+
+% --- SECTION FORMATTING ---
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large\bfseries\color{primary}
+}{}{0em}{}[\color{primary}\titlerule \vspace{-6pt}]
+
+% --- LIST FORMATTING ---
+\setlist[itemize]{leftmargin=1.2em, noitemsep, topsep=1pt, parsep=0pt}
+
+\begin{document}
+
+% --- HEADER ---
+\begin{flushleft}
+    {\Huge \textbf{\color{primary}AVIJIT PAUL}} \\ \vspace{3pt}
+    {\large \textbf{\color{secondary}Backend Engineer} $|$ \textit{Java · Spring Boot · Microservices · Distributed Systems}} \\ \vspace{3pt}
+    \small \color{secondary}
+    \faMapMarker* Dhaka, Bangladesh (Remote-Ready) \ $|$ \ 
+    \faPhone* +880 1712-768758 \ $|$ \ 
+    \faEnvelope \ \href{mailto:avijit.paul.cs@gmail.com}{avijit.paul.cs@gmail.com} \\[3pt]
+    \faLinkedin \ \href{https://linkedin.com/in/avijitpaulavi}{linkedin.com/in/avijitpaulavi} \ $|$ \ 
+    \faGithub \ \href{https://github.com/X-AVI-X}{github.com/X-AVI-X}
+\end{flushleft}
+
+\vspace{-6pt}
+
+% --- SUMMARY ---
+\section{Professional Summary}
+Results-driven Backend Engineer with production experience designing \textbf{microservice platforms serving 100+ enterprise users}. Specialized in \textbf{Java 17/21, Spring Boot, Spring AI}, and event-driven architecture. Built AI-powered chatbots with LLM tool-calling, real-time collaboration systems, and enterprise search platforms. Track record of reducing manual workflows by \textbf{35\%} and accelerating development cycles by \textbf{40\%}. Strategic problem-solver with a systems-thinking mindset, seeking high-impact remote roles in distributed systems and platform engineering.
+
+% --- SKILLS ---
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Languages \& Core:} Java 17/21, Python, JavaScript/TypeScript, SQL.
+    \item \textbf{Frameworks:} Spring Boot 3.x, Spring Security, Spring Data JPA, Spring Cloud, Hibernate, Lombok, MapStruct.
+    \item \textbf{Microservices:} Eureka Service Discovery, Spring Cloud Config, API Gateway, Feign Client, Flyway Migrations.
+    \item \textbf{AI/ML Integration:} Spring AI, Ollama (Llama 3.2), LLM Tool-Calling, Conversational Memory, JSON Repair.
+    \item \textbf{Messaging \& Real-Time:} RabbitMQ (STOMP Relay), WebSocket, Server-Sent Events (SSE), Reactor/WebFlux.
+    \item \textbf{Data \& Storage:} PostgreSQL, MySQL, JPA Specifications/Criteria API, JPQL, Query Optimization.
+    \item \textbf{DevOps:} Docker, On-Premises Linux Servers, Kubernetes, Bash/Shell Scripting, SSH Tunneling, CI/CD, Git.
+    \item \textbf{Frontend:} React, Next.js 14+, Tailwind CSS, SockJS, Responsive Design.
+    \item \textbf{Practices:} Agile/Scrum, TDD, Domain-Driven Design, SOLID, Design Patterns, Code Review.
+\end{itemize}
+
+% --- EXPERIENCE ---
+\section{Professional Experience}
+
+% -- ROLE 1 --
+\noindent \textbf{\color{primary}One Direction Companies Limited (ODCL)} \hfill \color{datecolor} Dhaka, Bangladesh \\
+\textit{\color{secondary}Software Engineer – Backend \& Platform} \hfill \color{datecolor} Nov 2024 – Present
+
+\vspace{1pt}
+\noindent \textit{Lead Backend Architect defining engineering standards and tech strategy. \textbf{Architected entire distributed ecosystem} (Gateway, Registry, Config, Auth) and \textbf{Next.js Frontend}, while owning **Core Domains** (Land Sourcing \& Registration, Asset, Purchase) serving \textbf{100+ active users}.}
+
+\vspace{2pt}
+\vspace{2pt}
+\noindent \textbf{\textsc{\color{secondary}Shimana – Land Management Platform}}
+\vspace{-2pt}
+\begin{itemize}
+    \item \textbf{Architected entire Microservice Infrastructure} from scratch: Config Server, Eureka Registry, API Gateway, and Auth Service, ensuring zero-downtime scalability.
+    \item Designed \textbf{Core Business Modules} (Land Sourcing \& Registration, Asset Management, Purchase Requisition), managing the \textbf{full land acquisition lifecycle} (owner vetting, price negotiation audit trails) via complex relational schemas and multi-stage approval workflows.
+    \item Developed \textbf{automated PDF Book Builder} with dynamic table of contents generation, document categorization, and multi-section merging using PDFBox.
+    \item Engineered \textbf{centralized Location Service} as single source of truth for a 5-level hierarchy (Country → Division → District → Thana → Mouza), eliminating data duplication across 6+ services.
+    \item Implemented \textbf{8-field dynamic search} with JPQL \texttt{ILIKE} patterns and \texttt{JpaSpecificationExecutor}, enabling sub-second queries across complex relational datasets.
+    \item Reduced \textbf{manual administrative effort by 35\%} through automated workflows (notifications, reminders, status tracking).
+\end{itemize}
+
+\vspace{2pt}
+\vspace{4pt}
+\noindent \textbf{\textsc{\color{secondary}Business Directory – Real-Time Collaboration \& AI Platform}}
+\vspace{-2pt}
+\begin{itemize}
+    \item Built complete \textbf{Meeting Scheduler Service} with file attachments, participant management, and \textbf{event-driven notifications} using Spring \texttt{ApplicationEventPublisher}.
+    \item Developed \textbf{real-time messaging system} with group chat (per meeting) and one-to-one personal chat, featuring unread tracking, read receipts, and participant validation—all over STOMP/RabbitMQ.
+    \item Implemented \textbf{custom JWT WebSocket authentication} via \texttt{ChannelInterceptor}, validating tokens on CONNECT and enforcing per-meeting authorization.
+    \item Developed \textbf{AI-powered meeting scheduling chatbot} using \textbf{Spring AI ChatClient} with conversational memory for multi-turn context.
+    \item Engineered \textbf{LLM tool-calling} with custom JSON repair logic (regex-based bracket balancing) to handle malformed outputs—achieving \textbf{95\%+ tool execution success rate}.
+    \item Delivered \textbf{SSE-based reactive streaming} using Project Reactor, filtering JSON blocks while executing tools asynchronously.
+\end{itemize}
+
+\vspace{2pt}
+\vspace{4pt}
+\noindent \textbf{\textsc{\color{secondary}DevOps \& Developer Experience}}
+\vspace{-2pt}
+\begin{itemize}
+    \item \textbf{Lead Frontend Engineering (Next.js 14+):} Built the complete responsive dashboard with complex form state management, server-side rendering (SSR), and a reusable component library.
+    \item \textbf{Mentored 2 junior developers} on backend architecture, system design, and microservices best practices.
+    \item Implemented \textbf{Redis caching} for session management and frequently accessed data, reducing database load.
+    \item Authored \textbf{418-line Bash orchestration script} for multi-phase startup with health checks, SSH tunneling, and graceful shutdown.
+    \item Containerized stack with \textbf{Docker Compose} (225-line config): Flyway migrations, health probes, and multi-schema PostgreSQL.
+\end{itemize}
+
+\vspace{2pt}
+
+% -- ROLE 2 --
+\noindent \textbf{\color{primary}BJIT} \hfill \color{datecolor} Dhaka, Bangladesh \\
+\textit{\color{secondary}Trainee Software Engineer (Java, Spring Boot, React)} \hfill \color{datecolor} 2023
+\begin{itemize}
+    \item \textbf{Engineered} low-latency Java microservices participating in full SDLC: requirement analysis, architecture design, implementation, unit testing (JUnit/Mockito), and deployment.
+    \item \textbf{Implemented} production-grade Docker containerization, build automation, and microservices patterns.
+    \item Proposed and implemented code improvements during architecture reviews, reducing technical debt.
+\end{itemize}
+
+\vspace{4pt}
+
+% -- ROLE 3 --
+\noindent \textbf{\color{primary}Square Health Ltd} \hfill \color{datecolor} Dhaka, Bangladesh \\
+\textit{\color{secondary}Software Engineer Intern} \hfill \color{datecolor} 2023
+\begin{itemize}
+    \item Designed and delivered \textbf{Hospital Billing System} with secure financial workflows and high-volume transaction logging.
+    \item Collaborated on database schema optimization and resolved production-level defects.
+\end{itemize}
+
+% --- PROJECTS ---
+\section{Projects}
+
+\noindent \textbf{Personalized Health Management System} $|$ \textit{Spring Cloud, Eureka, Zipkin, Feign} \hfill \href{https://github.com/X-AVI-X/Personalized-Health-Management-System-Microservice}{GitHub}
+\begin{itemize}
+    \item Built distributed microservices with service discovery (Eureka), distributed tracing (Zipkin), and inter-service communication (Feign).
+    \item Implemented centralized configuration and API Gateway routing for unified access control.
+\end{itemize}
+
+\vspace{2pt}
+
+\noindent \textbf{Hospital Billing System} $|$ \textit{Spring Boot, JWT, JPA, MySQL} \hfill \href{https://github.com/X-AVI-X/Billing-System-For-Hospitals-Backend}{GitHub}
+\begin{itemize}
+    \item Designed secure financial workflows with role-based authorization (Admin, Staff, Patient).
+    \item Optimized database schema for high-volume transaction logging and audit trails.
+\end{itemize}
+
+\vspace{2pt}
+
+\noindent \textbf{Online Book Library} $|$ \textit{Spring Boot, JPA, MySQL, REST API} \hfill \href{https://github.com/X-AVI-X/Online-Book-Library}{GitHub}
+\begin{itemize}
+    \item Clean architecture with domain-driven design, role-based access (Customer/Admin), and book reservation system.
+\end{itemize}
+
+\vspace{2pt}
+
+\noindent \textbf{Bomber-man Game Engine} $|$ \textit{Java, PApplet, 2D Graphics} \hfill \href{https://github.com/X-AVI-X/Bomberman}{GitHub}
+\begin{itemize}
+    \item Dynamic 2D game with destructible environments, enemy AI pathfinding, and strategic bomb mechanics.
+\end{itemize}
+
+% --- EDUCATION ---
+\section{Education \& Certifications}
+\noindent \textbf{B.Sc. in Computer Science \& Engineering} \hfill 2018 – 2022 \\
+\textit{American International University–Bangladesh (AIUB)} \hfill CGPA: 3.64 / 4.00
+\begin{itemize}
+    \item \textbf{Thesis:} Real-Time Threat \& Anomaly Detection from Surveillance Video using LRCN \& LSTM.
+    \item \textbf{Award:} Champion – Senior ICT Olympiad (JARVIS, ACC, AIUB 2023).
+\end{itemize}
+
+\vspace{2pt}
+\noindent \textbf{Certifications:} Software Product Management (University of Alberta/Coursera) \\
+\textbf{English:} IELTS Academic \textbf{7.5} (Professional Working Proficiency)
+
+% --- LEADERSHIP ---
+\section{Leadership \& Activities}
+\noindent \textbf{AIUB Computer Club} \hfill 2018 – 2023 
+\begin{itemize}
+    \item Organized events including CS Fest and Cyber Gaming Fest, coordinating logistics for 200+ participants.
+\end{itemize}
+
+\vspace{2pt}
+\noindent \textbf{AIUB Community of Engineering Students (ACES)} \hfill 2018 – 2022 
+\begin{itemize}
+    \item Contributed to community welfare initiatives and technical workshops.
+\end{itemize}
+
+% --- ACHIEVEMENTS ---
+\section{Early Achievements}
+\begin{itemize}
+    \item \textbf{I-genius Award} – GrameenPhone/Prothom Alo Internet Carnival (2011)
+    \item \textbf{Best Presentation} – Digital Innovation Fair (2012, 2013): E-Education for Handicapped Students; Freelancing Workshop
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,23 @@
+# LaTeX Build Artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.xdv
+*.nav
+*.snm
+
+# PDF (Optional: Keep if you want to track the PDF, ignore if generated)
+# *.pdf
+
+# Editor/OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Agentic Brain
+.gemini/
