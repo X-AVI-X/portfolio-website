@@ -9,6 +9,7 @@ const navItems = [
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
+    { label: "Logs", href: "#writing" },
     { label: "Contact", href: "#contact" },
 ];
 
@@ -43,8 +44,8 @@ const Navigation = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                        ? "bg-background/80 backdrop-blur-md border-b border-border"
-                        : "bg-transparent"
+                    ? "bg-background/80 backdrop-blur-md border-b border-border"
+                    : "bg-transparent"
                     }`}
             >
                 <div className="container mx-auto px-6 py-4">

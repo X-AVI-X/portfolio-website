@@ -180,7 +180,7 @@ const CategoryCard = ({ category, index }: { category: any; index: number }) => 
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {category.items.map((skill, i) => (
+                    {category.items.map((skill: string, i: number) => (
                         <SkillChip key={skill} name={skill} index={i} />
                     ))}
                 </div>

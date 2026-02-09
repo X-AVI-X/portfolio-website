@@ -437,4 +437,31 @@ public Meeting findOrCreateOneToOneChat(MeetingDTO dto) {
 } `
 };
 
+export const writing = [
+    {
+        id: "sys-001",
+        title: "Optimizing Next.js for 3D Rendering",
+        date: "2025-02-15",
+        category: "Performance",
+        summary: "How I reduced First Contentful Paint (FCP) by 40% using Framer Motion's hardware acceleration instead of heavy WebGL libraries for portfolio animations.",
+        link: "#",
+    },
+    {
+        id: "sys-002",
+        title: "Refactoring Monolithic Themes",
+        date: "2025-01-20",
+        category: "System Design",
+        summary: "Migrating from hardcoded Tailwind classes to a semantic CSS variable system (The 'Glow' Theme) to support instant runtime theming.",
+        link: "#",
+    },
+    {
+        id: "sys-003",
+        title: "The Case for Server-Sent Events (SSE)",
+        date: "2024-12-10",
+        category: "Backend",
+        summary: "Why I chose SSE over WebSockets for the Neural Meeting Architect's unidirectional token streaming pipeline.",
+        link: "#",
+    }
+];
+
 export const spotlights = [featureSpotlight, geoSpotlight, securitySpotlight, messengerSpotlight, schedulerSpotlight];

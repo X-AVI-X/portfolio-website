@@ -8,6 +8,7 @@ import { Contact, Footer } from "@/components/contact-footer";
 import ArchitecturalLeadership from "@/components/architectural-leadership";
 import FeatureSpotlight from "@/components/feature-spotlight";
 import CaseStudy from "@/components/case-study";
+import WritingLog from "@/components/writing-log";
 
 import GlobalSidebars from "@/components/global-sidebars";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <CaseStudy />
       <BentoGrid />
       <Education />
+      <WritingLog />
       <Contact />
       <Footer />
     </main>

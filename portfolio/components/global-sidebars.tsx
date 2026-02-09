@@ -14,7 +14,8 @@ const sections = [
     { id: "casestudy", label: "05_KERNEL" },
     { id: "projects", label: "06_DEPO" },
     { id: "education", label: "07_ACADEMIC" },
-    { id: "contact", label: "08_CONNECT" },
+    { id: "writing", label: "08_LOGS" },
+    { id: "contact", label: "09_CONNECT" },
 ];
 
 const GlobalSidebars = () => {
