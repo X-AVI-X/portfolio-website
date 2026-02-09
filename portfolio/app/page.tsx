@@ -9,9 +9,12 @@ import ArchitecturalLeadership from "@/components/architectural-leadership";
 import FeatureSpotlight from "@/components/feature-spotlight";
 import CaseStudy from "@/components/case-study";
 
+import GlobalSidebars from "@/components/global-sidebars";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative">
+      <GlobalSidebars />
       <Navigation />
       <TerminalHero />
       <SkillsMatrix />

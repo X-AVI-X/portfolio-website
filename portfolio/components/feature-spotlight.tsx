@@ -24,11 +24,27 @@ const FeatureSpotlight = () => {
     };
 
     return (
-        <section id="spotlight" className="py-24 px-6 relative overflow-hidden bg-background/50">
+        <section id="spotlight" className="py-24 px-6 relative overflow-hidden bg-muted/20">
             {/* Background Neural Grid */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--alpha-primary)_1px,_transparent_1px)] bg-[size:20px_20px] opacity-10" />
+            <div className="absolute -left-20 top-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto max-w-6xl relative z-10">
+
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-16 border-l-2 border-primary/30 pl-6"
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter text-glow">
+                        <span className="text-primary font-mono mr-2 opacity-50 text-2xl">04.</span>
+                        FEATURE_HIGHLIGHTS
+                    </h2>
+                    <p className="text-muted-foreground max-w-2xl font-mono text-xs uppercase tracking-[0.3em]">
+                        Deep dive into core implementation details
+                    </p>
+                </motion.div>
 
                 {spotlights.map((spotlight, i) => (
                     <div key={spotlight.title} className="mb-40 last:mb-0">
@@ -52,16 +68,16 @@ const FeatureSpotlight = () => {
                         </motion.div>
 
                         <div className="grid lg:grid-cols-2 gap-12 items-center">
-                            {/* Code Terminal Visualization - Keep dark for terminal look, but use border-border */}
+                            {/* Code Terminal Visualization */}
                             <motion.div
                                 initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className={`relative rounded-xl border border-border bg-[#1e1e1e] overflow-hidden shadow-2xl shadow-primary/5 ${i % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
+                                className={`relative rounded-xl border border-primary/30 bg-[#0d1117] overflow-hidden shadow-[0_0_30px_rgba(var(--primary-rgb),0.1)] ${i % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
                             >
                                 {/* Terminal Header */}
-                                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
+                                <div className="flex items-center gap-2 px-4 py-3 border-b border-primary/20 bg-primary/5">
                                     <div className="flex gap-1.5">
                                         <div className="w-3 h-3 rounded-full bg-red-500/80" />
                                         <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -119,7 +135,7 @@ const FeatureSpotlight = () => {
                                             transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
                                             className="flex gap-4 group"
                                         >
-                                            <div className="shrink-0 w-12 h-12 rounded-xl bg-secondary/50 flex items-center justify-center text-primary border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                                            <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]">
                                                 {icons[feature.icon] || <Terminal size={20} />}
                                             </div>
                                             <div>
@@ -142,7 +158,7 @@ const FeatureSpotlight = () => {
                                     className="flex flex-wrap gap-2 pt-4"
                                 >
                                     {spotlight.techStack.map((tech) => (
-                                        <span key={tech} className="px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-xs font-mono text-primary/80">
+                                        <span key={tech} className="px-3 py-1 rounded-full bg-primary/5 border border-primary/20 text-xs font-mono text-primary/80 hover:bg-primary/10 transition-colors cursor-default">
                                             {tech}
                                         </span>
                                     ))}

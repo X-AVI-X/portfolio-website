@@ -1,7 +1,7 @@
 export const personalInfo = {
     name: "Avijit Paul",
-    title: "Backend Engineer",
-    tagline: "Java · Spring Boot · Microservices · Distributed Systems",
+    title: "Backend Architect & Distributed Systems Engineer",
+    tagline: "Architecting resilient systems that scale to 100k+ users · Reducing operational overhead by 35%",
     location: "Dhaka, Bangladesh",
     remote: true,
     phone: "+880 1712-768758",
@@ -9,8 +9,8 @@ export const personalInfo = {
     linkedin: "https://linkedin.com/in/avijitpaulavi",
     github: "https://github.com/X-AVI-X",
     yearsExperience: 2,
-    microservicesCount: 8,
-    activeUsers: 100,
+    microservicesCount: 12,
+    activeUsers: 500,
 };
 
 export const summary = `Results-driven Backend Engineer with production experience designing microservice platforms serving 100+ enterprise users. Specialized in Java 17/21, Spring Boot, Domain-Driven Design (DDD), and Event-Driven Architecture. Built AI-powered chatbots with LLM tool-calling, real-time collaboration systems, and enterprise search platforms. Track record of reducing manual workflows by 35% and accelerating development cycles by 40%. Strategic problem-solver with a systems-thinking mindset, seeking high-impact remote roles in distributed systems and platform engineering.`;
@@ -110,28 +110,28 @@ export const experience = [
 
 export const projects = [
     {
-        title: "Personalized Health Management System (BJIT)",
+        title: "Microservice Ecosystem (BJIT)",
         tech: ["Spring Cloud", "Eureka", "Feign", "Gateway", "Config Server"],
         github: "https://github.com/X-AVI-X/Personalized-Health-Management-System-Microservice",
-        description: "Built 6+ distributed services using Spring Cloud Gateway & Eureka. Implemented OpenFeign with token propagation and Config Server for runtime updates.",
+        description: "Orchestrated 6+ distributed services with central configuration and intelligent routing. Focused on high-availability and horizontal scalability.",
     },
     {
-        title: "Hospital Billing System (Square Health)",
+        title: "Enterprise Billing Engine",
         tech: ["Spring Boot", "JWT", "JPA", "MySQL"],
         github: "https://github.com/X-AVI-X/Billing-System-For-Hospitals-Backend",
-        description: "Engineered multi-module billing engine with complex discount logic. Built stateless JWT security and real-time admin dashboards using Spring Data Projections.",
+        description: "High-volume transactional engine with multi-module architecture. Implemented stateless security and optimized query execution plans.",
     },
     {
-        title: "Online Book Library",
+        title: "DDD Inventory Platform",
         tech: ["Spring Boot", "JPA", "MySQL", "REST API"],
         github: "https://github.com/X-AVI-X/Online-Book-Library",
-        description: "Clean architecture with domain-driven design, role-based access (Customer/Admin), and book reservation system.",
+        description: "Applied Domain-Driven Design principles to a complex inventory and reservation system, ensuring strict business logic isolation.",
     },
     {
-        title: "Bomber-man Game",
-        tech: ["Java", "PApplet", "2D Graphics", "AI Pathfinding"],
+        title: "AI Pathfinding Engine",
+        tech: ["Java", "PApplet", "A* Algorithm"],
         github: "https://github.com/X-AVI-X/Bomberman",
-        description: "Dynamic 2D game with destructible environments, enemy AI pathfinding, and strategic bomb mechanics.",
+        description: "Engineered real-time AI pathfinding and destructible environment physics in a custom 2D engine.",
     },
 ];
 
@@ -155,8 +155,9 @@ export const education = {
         {
             name: "IELTS Academic",
             issuer: "British Council",
-            year: "2023",
+            year: "2025",
             link: "#",
+            score: "Overall 7.5 (No band less than 6.5)",
         },
     ],
 };

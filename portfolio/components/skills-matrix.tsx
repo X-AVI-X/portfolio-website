@@ -4,137 +4,218 @@ import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
 import {
     Code2,
-    Terminal,
     Database,
     Cloud,
     Bot,
-    Cpu,
-    Layers,
     Workflow,
-    Sparkles
+    Sparkles,
+    Box,
+    ShieldCheck,
+    Zap
 } from "lucide-react";
+import { useState } from "react";
 
-// Map categories to icons
+// Map categories to modern glassmorphism icons
 const iconMap: Record<string, any> = {
-    "Languages & Core": <Code2 size={24} />,
-    "Frameworks": <Layers size={24} />,
-    "Microservices": <Workflow size={24} />,
-    "Data & Storage": <Database size={24} />,
-    "DevOps": <Cloud size={24} />,
-    "AI/ML Integration": <Bot size={24} />,
-    "Messaging & Real-Time": <Cpu size={24} />,
-    "Frontend": <Sparkles size={24} />
+    "Languages & Core": <Code2 size={20} className="text-blue-400" />,
+    "Frameworks": <Box size={20} className="text-emerald-400" />,
+    "Microservices": <Workflow size={20} className="text-purple-400" />,
+    "Messaging & Real-Time": <Zap size={20} className="text-yellow-400" />,
+    "AI/ML Integration": <Bot size={20} className="text-orange-400" />,
+    "Data & Storage": <Database size={20} className="text-indigo-400" />,
+    "Practices": <ShieldCheck size={20} className="text-red-400" />,
+    "DevOps": <Cloud size={20} className="text-cyan-400" />,
+    "Frontend": <Sparkles size={20} className="text-pink-400" />
 };
 
-// Map skills to proficiency percentages
-const proficiencyMap: Record<string, number> = {
-    "Java 17+": 95,
-    "Spring Boot 3.x": 92,
-    "Spring Security": 88,
-    "Spring Data JPA": 90,
-    "Spring Cloud": 85,
-    "Python": 75,
-    "TypeScript": 80,
-    "SQL": 85,
-    "PostgreSQL": 88,
-    "Redis": 82,
-    "Docker": 85,
-    "Kubernetes": 70,
-    "Kafka": 75,
-    "RabbitMQ": 80,
-    "React": 78,
-    "Next.js 14+": 82,
-    "Spring AI": 65,
-    "Ollama": 70,
-    "LLM Tool-Calling": 72,
-    "Conversational Memory": 68,
-    "Eureka": 85,
-    "API Gateway": 88,
-    "Feign Client": 90
+const SkillChip = ({ name, index }: { name: string; index: number }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{
+                scale: 1.08,
+                backgroundColor: "rgba(var(--primary-rgb), 0.15)",
+                borderColor: "rgba(var(--primary-rgb), 0.4)"
+            }}
+            transition={{ duration: 0.2, delay: index * 0.03 }}
+            className="group relative px-2.5 py-1 rounded-md border border-border/40 bg-secondary/20 backdrop-blur-sm transition-all flex items-center gap-1.5 cursor-default"
+        >
+            <div className="w-1 h-1 rounded-full bg-primary/30 group-hover:bg-primary transition-colors animate-pulse" />
+            <span className="text-[10px] font-mono font-medium text-foreground/70 group-hover:text-primary transition-colors whitespace-nowrap">
+                {name}
+            </span>
+        </motion.div>
+    );
+};
+
+const CategoryCard = ({ category, index }: { category: any; index: number }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const gradients = [
+        "from-blue-500/10 via-blue-500/5 to-transparent",
+        "from-emerald-500/10 via-emerald-500/5 to-transparent",
+        "from-purple-500/10 via-purple-500/5 to-transparent",
+        "from-yellow-500/10 via-yellow-500/5 to-transparent",
+        "from-orange-500/10 via-orange-500/5 to-transparent",
+        "from-indigo-500/10 via-indigo-500/5 to-transparent",
+        "from-red-500/10 via-red-500/5 to-transparent",
+        "from-cyan-500/10 via-cyan-500/5 to-transparent",
+        "from-pink-500/10 via-pink-500/5 to-transparent"
+    ];
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
+            className="group relative p-5 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 flex flex-col min-h-[160px]"
+        >
+            {/* Animated Background Abstractions */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-xl">
+                {/* Gradient Orb */}
+                <motion.div
+                    className={`absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-bl ${gradients[index % gradients.length]} blur-2xl rounded-full`}
+                    animate={isHovered ? {
+                        scale: [1, 1.3, 1.2],
+                        opacity: [0.3, 0.6, 0.5],
+                        x: [0, -10, -5],
+                        y: [0, 10, 5]
+                    } : {
+                        scale: 1,
+                        opacity: 0.3
+                    }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                />
+
+                {/* Pulsing Dot Pattern */}
+                <motion.div
+                    className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--alpha-primary)_1px,_transparent_1px)] bg-[size:15px_15px] [--alpha-primary:white]"
+                    animate={isHovered ? { opacity: 0.08 } : { opacity: 0.02 }}
+                    transition={{ duration: 0.3 }}
+                />
+
+                {/* Bottom Left Glow */}
+                <motion.div
+                    className="absolute -bottom-6 -left-6 w-20 h-20 bg-primary/10 rounded-full blur-xl"
+                    animate={isHovered ? {
+                        scale: [1, 1.4, 1.3],
+                        opacity: [0.2, 0.4, 0.3]
+                    } : {
+                        scale: 1,
+                        opacity: 0.2
+                    }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                />
+
+                {/* Floating Particles */}
+                {isHovered && [...Array(3)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-primary/40 rounded-full"
+                        initial={{
+                            x: Math.random() * 100 + '%',
+                            y: Math.random() * 100 + '%',
+                            opacity: 0
+                        }}
+                        animate={{
+                            y: [null, '-20px', '-40px'],
+                            opacity: [0, 0.6, 0],
+                            scale: [0.5, 1, 0.5]
+                        }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                            ease: "easeOut"
+                        }}
+                    />
+                ))}
+
+                {/* Scanline Effect */}
+                <motion.div
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent h-[200%]"
+                    animate={isHovered ? {
+                        y: ['-100%', '0%']
+                    } : {
+                        y: '-100%'
+                    }}
+                    transition={{
+                        duration: 1.5,
+                        ease: "linear"
+                    }}
+                />
+            </div>
+
+            <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-5">
+                    <div className="space-y-1 flex-1">
+                        <h3 className="font-bold text-xs uppercase tracking-widest font-mono text-foreground/80 group-hover:text-primary transition-colors">
+                            {category.category}
+                        </h3>
+                        <motion.div
+                            className="h-0.5 bg-gradient-to-r from-primary/40 to-transparent rounded-full"
+                            animate={isHovered ? { width: '100%' } : { width: '40%' }}
+                            transition={{ duration: 0.5 }}
+                        />
+                    </div>
+                    <motion.div
+                        className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 shadow-inner"
+                        animate={isHovered ? {
+                            scale: 1.15,
+                            backgroundColor: "rgba(var(--primary-rgb), 0.08)",
+                            borderColor: "rgba(var(--primary-rgb), 0.2)",
+                            rotate: [0, -5, 5, 0]
+                        } : {
+                            scale: 1,
+                            rotate: 0
+                        }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        {iconMap[category.category] || <Box size={20} />}
+                    </motion.div>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {category.items.map((skill, i) => (
+                        <SkillChip key={skill} name={skill} index={i} />
+                    ))}
+                </div>
+            </div>
+        </motion.div>
+    );
 };
 
 const SkillsMatrix = () => {
     return (
-        <section id="skills" className="py-24 px-6 bg-secondary/20">
-            <div className="container mx-auto max-w-6xl">
+        <section id="skills" className="py-24 px-6 relative overflow-hidden bg-background">
+            {/* Ambient Background Elements */}
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none" />
+
+            <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16"
+                    transition={{ duration: 0.8 }}
+                    className="mb-16 border-l-2 border-primary/30 pl-6"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-                        <span className="text-primary font-mono mr-4">02.</span>
-                        TECH_STACK
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter text-glow">
+                        <span className="text-primary font-mono mr-2 opacity-50 text-2xl">01.</span>
+                        KNOWLEDGE_GRAPH
                     </h2>
-                    <p className="text-muted-foreground max-w-2xl font-mono text-sm uppercase tracking-widest">
-                        Technologies I work with daily to build scalable systems
+                    <p className="text-muted-foreground max-w-2xl font-mono text-xs uppercase tracking-[0.3em]">
+                        Distributed systems · AI Integration · Reactive Architectures
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {skills.map((category, index) => (
-                        <motion.div
-                            key={category.category}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm card-hover flex flex-col"
-                        >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20">
-                                    {iconMap[category.category] || <Terminal size={24} />}
-                                </div>
-                                <h3 className="font-bold text-sm uppercase tracking-wider font-mono">
-                                    {category.category}
-                                </h3>
-                            </div>
-
-                            <div className="space-y-4 flex-1">
-                                {category.items.map((skill, i) => {
-                                    const proficiency = proficiencyMap[skill] || 70;
-                                    return (
-                                        <div key={skill} className="group">
-                                            <div className="flex items-center justify-between mb-1.5">
-                                                <span className="text-[11px] font-mono text-muted-foreground group-hover:text-primary transition-colors">
-                                                    {skill}
-                                                </span>
-                                                <span className="text-[10px] font-mono text-primary/60 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    {proficiency}%
-                                                </span>
-                                            </div>
-                                            <div className="h-1 bg-secondary rounded-full overflow-hidden border border-border/20">
-                                                <motion.div
-                                                    className="h-full bg-gradient-to-r from-primary/40 to-primary rounded-full"
-                                                    initial={{ width: 0 }}
-                                                    whileInView={{ width: `${proficiency}%` }}
-                                                    viewport={{ once: false, amount: 0.5 }}
-                                                    transition={{ duration: 1, delay: 0.2 + (i * 0.05) }}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Category Accent */}
-                            <div className="mt-6 pt-4 border-t border-border/50">
-                                <div className="flex gap-1 justify-end">
-                                    {[...Array(3)].map((_, i) => {
-                                        // Category-specific mastery levels
-                                        const mastery = category.category === "Languages & Core" ||
-                                            category.category === "Frameworks" ||
-                                            category.category === "Microservices" ||
-                                            category.category === "Data & Storage" ? 3 : 2;
-                                        return (
-                                            <div key={i} className={`w-1 h-1 rounded-full ${i < mastery ? 'bg-primary' : 'bg-primary/20'}`} />
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        </motion.div>
+                        <CategoryCard key={category.category} category={category} index={index} />
                     ))}
                 </div>
             </div>

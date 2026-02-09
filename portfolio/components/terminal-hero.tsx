@@ -2,8 +2,8 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/lib/data";
-import { Github, Linkedin, Mail, MapPin, Terminal } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { Github, Linkedin, Mail, MapPin, Terminal, MousePointer2 } from "lucide-react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import Image from "next/image";
 
 // Animated particle background
@@ -134,10 +134,25 @@ const TerminalHero = () => {
     const [showContent, setShowContent] = useState(false);
 
     const commands = [
-        { text: "> init --profile avijit.config", delay: 20 },
-        { text: "> loading system core...", delay: 15 },
-        { text: "> ready.", delay: 30 },
+        { text: "> init --profile avijit.config", delay: 10 },
+        { text: "> loading system core...", delay: 5 },
+        { text: "> ready.", delay: 20 },
     ];
+
+    // Mouse movement for 3D tilt effect
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const sectionRef = useRef<HTMLElement>(null);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!sectionRef.current) return;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        setMousePos({ x, y });
+    };
+
+    const tiltX = mousePos.y * 10; // Max 10 degrees
+    const tiltY = -mousePos.x * 10;
 
     useEffect(() => {
         let currentIndex = 0;
@@ -168,7 +183,13 @@ const TerminalHero = () => {
     }, [stage]);
 
     return (
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+        <section
+            id="hero"
+            ref={sectionRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
+            className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background perspective-1000"
+        >
             <ParticleBackground />
 
             {/* Grid Overlay */}
@@ -177,8 +198,19 @@ const TerminalHero = () => {
             <div className="container mx-auto px-6 py-20 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    animate={{
+                        opacity: 1,
+                        y: 0,
+                        rotateX: tiltX,
+                        rotateY: tiltY,
+                    }}
+                    transition={{
+                        type: "spring",
+                        damping: 25,
+                        stiffness: 150,
+                        opacity: { duration: 0.8 },
+                        y: { duration: 0.8 }
+                    }}
                     className="max-w-4xl mx-auto"
                 >
                     {/* Terminal Window */}
