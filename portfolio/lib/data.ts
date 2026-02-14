@@ -1,7 +1,7 @@
 export const personalInfo = {
     name: "Avijit Paul",
-    title: "Backend Architect & Distributed Systems Engineer",
-    tagline: "Architecting resilient systems that scale to 100k+ users · Reducing operational overhead by 35%",
+    title: "Backend & Platform Engineer",
+    tagline: "Architecting resilient systems for 100+ enterprise users · Reducing operational overhead by 35%",
     location: "Dhaka, Bangladesh",
     remote: true,
     phone: "+880 1712-768758",
@@ -10,7 +10,7 @@ export const personalInfo = {
     github: "https://github.com/X-AVI-X",
     yearsExperience: 2,
     microservicesCount: 12,
-    activeUsers: 500,
+    activeUsers: 100,
 };
 
 export const summary = `Results-driven Backend Engineer with production experience designing microservice platforms serving 100+ enterprise users. Specialized in Java 17/21, Spring Boot, Domain-Driven Design (DDD), and Event-Driven Architecture. Built AI-powered chatbots with LLM tool-calling, real-time collaboration systems, and enterprise search platforms. Track record of reducing manual workflows by 35% and accelerating development cycles by 40%. Strategic problem-solver with a systems-thinking mindset, seeking high-impact remote roles in distributed systems and platform engineering.`;
@@ -110,25 +110,25 @@ export const experience = [
 
 export const projects = [
     {
-        title: "Microservice Ecosystem (BJIT)",
+        title: "Personalized Health Management System",
         tech: ["Spring Cloud", "Eureka", "Feign", "Gateway", "Config Server"],
         github: "https://github.com/X-AVI-X/Personalized-Health-Management-System-Microservice",
         description: "Orchestrated 6+ distributed services with central configuration and intelligent routing. Focused on high-availability and horizontal scalability.",
     },
     {
-        title: "Enterprise Billing Engine",
+        title: "Hospital Billing System",
         tech: ["Spring Boot", "JWT", "JPA", "MySQL"],
         github: "https://github.com/X-AVI-X/Billing-System-For-Hospitals-Backend",
         description: "High-volume transactional engine with multi-module architecture. Implemented stateless security and optimized query execution plans.",
     },
     {
-        title: "DDD Inventory Platform",
+        title: "Online Book Library",
         tech: ["Spring Boot", "JPA", "MySQL", "REST API"],
         github: "https://github.com/X-AVI-X/Online-Book-Library",
         description: "Applied Domain-Driven Design principles to a complex inventory and reservation system, ensuring strict business logic isolation.",
     },
     {
-        title: "AI Pathfinding Engine",
+        title: "Bomber-man Game Engine",
         tech: ["Java", "PApplet", "A* Algorithm"],
         github: "https://github.com/X-AVI-X/Bomberman",
         description: "Engineered real-time AI pathfinding and destructible environment physics in a custom 2D engine.",
