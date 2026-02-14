@@ -30,9 +30,9 @@ const WritingLog = () => {
                 </motion.div>
 
                 {/* Terminal Window container for logs */}
-                <div className="rounded-xl border border-primary/20 bg-[#0d1117] overflow-hidden shadow-2xl relative">
+                <div className="rounded-xl border border-primary/20 bg-card overflow-hidden shadow-2xl relative">
                     {/* Terminal Header */}
-                    <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
                         <div className="flex gap-2">
                             <div className="w-3 h-3 rounded-full bg-red-500/80" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -46,7 +46,7 @@ const WritingLog = () => {
                     </div>
 
                     {/* Log Entries */}
-                    <div className="divide-y divide-white/5 font-mono">
+                    <div className="divide-y divide-border font-mono">
                         {writing.map((post, index) => (
                             <motion.a
                                 key={post.id}
@@ -57,7 +57,7 @@ const WritingLog = () => {
                                 transition={{ delay: index * 0.1 }}
                                 onHoverStart={() => setHoveredIndex(index)}
                                 onHoverEnd={() => setHoveredIndex(null)}
-                                className="block p-6 hover:bg-white/[0.02] transition-colors group relative"
+                                className="block p-6 hover:bg-accent/30 transition-colors group relative"
                             >
                                 {/* Hover Glow Line */}
                                 <div className={`absolute left-0 top-0 bottom-0 w-1 bg-primary transform origin-left transition-transform duration-300 ${hoveredIndex === index ? 'scale-y-100' : 'scale-y-0'}`} />
@@ -76,7 +76,7 @@ const WritingLog = () => {
                                                 {post.title}
                                                 <ArrowUpRight size={14} className={`opacity-0 -translate-y-1 translate-x-1 transition-all duration-300 ${hoveredIndex === index ? 'opacity-100 translate-y-0 translate-x-0' : ''}`} />
                                             </h3>
-                                            <span className="shrink-0 px-2 py-1 rounded text-[10px] uppercase tracking-wider border border-white/10 bg-white/5 text-muted-foreground group-hover:border-primary/30 group-hover:text-primary transition-colors">
+                                            <span className="shrink-0 px-2 py-1 rounded text-[10px] uppercase tracking-wider border border-border bg-muted/50 text-muted-foreground group-hover:border-primary/30 group-hover:text-primary transition-colors">
                                                 {post.category}
                                             </span>
                                         </div>
@@ -97,7 +97,7 @@ const WritingLog = () => {
                     </div>
 
                     {/* Terminal Footer */}
-                    <div className="px-4 py-2 border-t border-white/5 bg-white/[0.02] text-[10px] text-muted-foreground/50 font-mono flex justify-between">
+                    <div className="px-4 py-2 border-t border-border bg-muted/30 text-[10px] text-muted-foreground/50 font-mono flex justify-between">
                         <span>-- INSERT MODEL --</span>
                         <span>{writing.length}L, {writing.reduce((acc, curr) => acc + curr.summary.length, 0)}C written</span>
                     </div>
