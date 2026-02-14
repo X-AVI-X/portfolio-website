@@ -43,7 +43,7 @@ const Contact = () => {
                     className="mb-16 border-l-2 border-primary/30 pl-6"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tighter text-glow">
-                        <span className="text-primary font-mono mr-2 opacity-50 text-2xl">08.</span>
+                        <span className="text-primary font-mono mr-2 opacity-50 text-2xl">09.</span>
                         CONNECT_NODE
                     </h2>
                     <p className="text-muted-foreground max-w-2xl font-mono text-xs uppercase tracking-[0.3em] mb-12">
