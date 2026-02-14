@@ -57,20 +57,20 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
         >
             <div className="relative">
                 {/* Comet Tail - Dust & Ion Trails */}
-                <div className="absolute top-[0px] left-[-12px] w-[25px] h-[400px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[25px] rounded-full" />
-                <div className="absolute top-[0px] left-[-7px] w-[15px] h-[300px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[15px] rounded-full" />
-                <div className="absolute top-[0px] left-[-1px] w-[2px] h-[225px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[2px]" />
+                <div className="absolute top-[0px] left-[-6px] w-[12px] h-[160px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[15px] rounded-full" />
+                <div className="absolute top-[0px] left-[-4px] w-[8px] h-[120px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[8px] rounded-full" />
+                <div className="absolute top-[0px] left-[-1px] w-[1px] h-[90px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[1px]" />
 
                 {/* The Fire Head - Flickering Plasma */}
                 <div className="absolute top-0 left-0">
                     {/* Core heat bloom */}
-                    <div className="absolute top-[-20px] left-[-20px] w-[40px] h-[40px] bg-primary/30 blur-[20px] rounded-full animate-pulse" />
+                    <div className="absolute top-[-8px] left-[-8px] w-[16px] h-[16px] bg-primary/30 blur-[10px] rounded-full animate-pulse" />
 
                     {/* Liquid Fire Layers */}
                     {[...Array(5)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute top-[-5px] left-[-5px] w-[10px] h-[10px] bg-white rounded-full blur-[2px] mix-blend-screen"
+                            className="absolute top-[-3px] left-[-3px] w-[6px] h-[6px] bg-white rounded-full blur-[1px] mix-blend-screen"
                             animate={{
                                 scale: [1, 1.5, 1.2],
                                 opacity: [0.4, 1, 0.6],
@@ -91,14 +91,14 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
                     {[...Array(3)].map((_, i) => (
                         <motion.div
                             key={`flame-${i}`}
-                            className="absolute top-[0px] left-[-5px] w-[10px] h-[40px] bg-gradient-to-b from-white via-primary/60 to-transparent blur-[4px]"
+                            className="absolute top-[0px] left-[-3px] w-[6px] h-[20px] bg-gradient-to-b from-white via-primary/60 to-transparent blur-[3px]"
                             style={{
                                 originY: "top",
                                 borderRadius: "40% 40% 0 0",
                                 rotate: i * 5 - 5
                             }}
                             animate={{
-                                height: [60, 120, 80],
+                                height: [25, 50, 35],
                                 skewX: [-10, 10, -10],
                                 opacity: [0.3, 0.7, 0.4]
                             }}
@@ -111,7 +111,7 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
                     ))}
 
                     {/* Intense Flare Tip */}
-                    <div className="absolute top-[-1px] left-[-1px] w-[2px] h-[2px] bg-white rounded-full shadow-[0_0_15px_5px_#fff]" />
+                    <div className="absolute top-[-1px] left-[-1px] w-[1px] h-[1px] bg-white rounded-full shadow-[0_0_8px_3px_#fff]" />
                 </div>
             </div>
         </motion.div>
@@ -121,23 +121,18 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
 const CometShower = () => {
     const [activeCometId, setActiveCometId] = useState<number | null>(null);
 
+    const spawnComet = () => setActiveCometId(Date.now());
+
+    const handleCometFinished = () => {
+        setActiveCometId(null);
+        // Spawn next comet 45 seconds after the previous one disappears
+        setTimeout(spawnComet, 45000);
+    };
+
     useEffect(() => {
-        let showerInterval: NodeJS.Timeout;
-
-        const spawn = () => setActiveCometId(Date.now());
-
-        // Wait 5 seconds after mount before starting the first comet
-        const startTimer = setTimeout(() => {
-            spawn();
-
-            // Then continue at the requested 15s interval
-            showerInterval = setInterval(spawn, 15000);
-        }, 5000);
-
-        return () => {
-            clearTimeout(startTimer);
-            if (showerInterval) clearInterval(showerInterval);
-        };
+        // Wait 15 seconds after mount before starting the first comet
+        const startTimer = setTimeout(spawnComet, 15000);
+        return () => clearTimeout(startTimer);
     }, []);
 
     return (
@@ -146,7 +141,7 @@ const CometShower = () => {
                 <Comet
                     key={activeCometId}
                     id={activeCometId}
-                    onFinished={() => setActiveCometId(null)}
+                    onFinished={handleCometFinished}
                 />
             )}
         </div>
@@ -255,8 +250,8 @@ const ProfileAvatar = ({ show }: { show: boolean }) => (
             <Image
                 src="/profile.png"
                 alt="Avijit Paul"
-                width={160}
-                height={160}
+                width={400}
+                height={400}
                 className="rounded-full object-cover w-full h-full"
                 priority
             />
@@ -419,7 +414,7 @@ const TerminalHero = () => {
                         </motion.h1>
 
                         <motion.div
-                            className="flex flex-col items-center gap-2 mb-8"
+                            className="flex flex-col items-center gap-3 mb-8"
                             animate={showContent ? { opacity: [0, 1] } : {}}
                         >
                             <p className="text-xl md:text-2xl font-medium text-foreground/80">
@@ -432,7 +427,7 @@ const TerminalHero = () => {
                         </motion.div>
 
                         {/* Stats - Horizontal Row */}
-                        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-16">
+                        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-6">
                             <StatCard label="Experience" value={personalInfo.yearsExperience} suffix="Y+" />
                             <StatCard label="Microservices" value={personalInfo.microservicesCount} suffix="+" />
                             <StatCard label="Users" value={personalInfo.activeUsers} suffix="+" />
@@ -453,27 +448,27 @@ const TerminalHero = () => {
                                 )}
                             </div>
                         </div>
+
+                        {/* Scroll indicator — grouped with social */}
+                        <AnimatePresence>
+                            {showContent && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="flex flex-col items-center gap-2 mt-8"
+                                >
+                                    <span className="text-[10px] font-mono text-muted-foreground tracking-[0.3em] uppercase">Scroll</span>
+                                    <motion.div
+                                        animate={{ y: [0, 10, 0] }}
+                                        transition={{ repeat: Infinity, duration: 2 }}
+                                        className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"
+                                    />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </motion.div>
                 </motion.div>
             </div>
-
-            {/* Scroll indicator */}
-            <AnimatePresence>
-                {showContent && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-                    >
-                        <span className="text-[10px] font-mono text-muted-foreground tracking-[0.3em] uppercase">Scroll</span>
-                        <motion.div
-                            animate={{ y: [0, 10, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 }}
-                            className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </section>
     );
 };

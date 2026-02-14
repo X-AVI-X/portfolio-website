@@ -8,7 +8,7 @@ export const personalInfo = {
     email: "avijit.paul.cs@gmail.com",
     linkedin: "https://linkedin.com/in/avijitpaulavi",
     github: "https://github.com/X-AVI-X",
-    yearsExperience: 2,
+    yearsExperience: 3,
     microservicesCount: 12,
     activeUsers: 100,
 };
