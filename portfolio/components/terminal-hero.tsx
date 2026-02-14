@@ -14,20 +14,39 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
         return () => clearTimeout(timer);
     }, [id, onFinished]);
 
-    const startOffset = useMemo(() => Math.random() * 40 - 20, []);
+    const config = useMemo(() => {
+        const startEdge = Math.floor(Math.random() * 4); // 0:T, 1:B, 2:L, 3:R
+        let startX, startY, endX, endY;
+
+        if (startEdge === 0) { startX = Math.random() * 100; startY = -20; }
+        else if (startEdge === 1) { startX = Math.random() * 100; startY = 120; }
+        else if (startEdge === 2) { startX = -20; startY = Math.random() * 100; }
+        else { startX = 120; startY = Math.random() * 100; }
+
+        let endEdge = Math.floor(Math.random() * 3);
+        if (endEdge >= startEdge) endEdge++;
+
+        if (endEdge === 0) { endX = Math.random() * 100; endY = -20; }
+        else if (endEdge === 1) { endX = Math.random() * 100; endY = 120; }
+        else if (endEdge === 2) { endX = -20; endY = Math.random() * 100; }
+        else { endX = 120; endY = Math.random() * 100; }
+
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI + 90;
+        return { startX, startY, endX, endY, angle };
+    }, []);
 
     return (
         <motion.div
             initial={{
-                top: `${startOffset - 10}vh`,
-                left: `${startOffset - 10}vw`,
+                top: `${config.startY}vh`,
+                left: `${config.startX}vw`,
                 opacity: 0,
-                rotate: 120,
-                scale: 1 // Using true dimensions now
+                rotate: config.angle,
+                scale: 1
             }}
             animate={{
-                top: "120vh",
-                left: "120vw",
+                top: `${config.endY}vh`,
+                left: `${config.endX}vw`,
                 opacity: [0, 1, 1, 0],
             }}
             transition={{
@@ -100,19 +119,19 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
 };
 
 const CometShower = () => {
-    const [comets, setComets] = useState<number[]>([]);
+    const [activeCometId, setActiveCometId] = useState<number | null>(null);
 
     useEffect(() => {
         let showerInterval: NodeJS.Timeout;
 
+        const spawn = () => setActiveCometId(Date.now());
+
         // Wait 5 seconds after mount before starting the first comet
         const startTimer = setTimeout(() => {
-            setComets(prev => [...prev, Date.now()]);
+            spawn();
 
             // Then continue at the requested 15s interval
-            showerInterval = setInterval(() => {
-                setComets(prev => [...prev, Date.now()]);
-            }, 15000);
+            showerInterval = setInterval(spawn, 15000);
         }, 5000);
 
         return () => {
@@ -121,15 +140,15 @@ const CometShower = () => {
         };
     }, []);
 
-    const removeComet = (id: number) => {
-        setComets(prev => prev.filter(m => m !== id));
-    };
-
     return (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {comets.map(id => (
-                <Comet key={id} id={id} onFinished={removeComet} />
-            ))}
+            {activeCometId && (
+                <Comet
+                    key={activeCometId}
+                    id={activeCometId}
+                    onFinished={() => setActiveCometId(null)}
+                />
+            )}
         </div>
     );
 };
