@@ -6,6 +6,77 @@ import { Github, Linkedin, Mail, MapPin, Terminal, MousePointer2 } from "lucide-
 import { useEffect, useState, useRef, useMemo } from "react";
 import Image from "next/image";
 
+const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => void }) => {
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            onFinished(id);
+        }, 5500);
+        return () => clearTimeout(timer);
+    }, [id, onFinished]);
+
+    const startOffset = useMemo(() => Math.random() * 40 - 20, []);
+
+    return (
+        <motion.div
+            initial={{
+                top: `${startOffset - 20}vh`,
+                left: `${startOffset - 20}vw`,
+                opacity: 0,
+                rotate: 135
+            }}
+            animate={{
+                top: "120vh",
+                left: "120vw",
+                opacity: [0, 1, 1, 0],
+            }}
+            transition={{
+                duration: 5,
+                ease: "linear",
+            }}
+            className="absolute z-0 pointer-events-none"
+        >
+            <div className="relative">
+                {/* Comet Tail - Dust & Ion Trails */}
+                <div className="absolute top-[0px] left-[-25px] w-[50px] h-[700px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[60px] rounded-full" />
+                <div className="absolute top-[0px] left-[-12px] w-[24px] h-[550px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[35px] rounded-full" />
+                <div className="absolute top-[0px] left-[-2px] w-[4px] h-[400px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[4px]" />
+
+                {/* The Coma - Atmospheric Glow */}
+                <div className="absolute top-[-30px] left-[-30px] w-[60px] h-[60px] bg-primary/20 blur-[30px] rounded-full shadow-[0_0_60px_var(--primary)]" />
+
+                {/* The Nucleus - Intense Core */}
+                <div className="absolute top-[-6px] left-[-6px] w-[12px] h-[12px] bg-white rounded-full shadow-[0_0_40px_#fff, 0_0_80px_var(--primary), 0_0_120px_var(--primary)]" />
+
+                {/* Sparkle/Flare head */}
+                <div className="absolute top-[0px] left-[0px] w-[1px] h-[1px] bg-white shadow-[0_0_50px_15px_#fff]" />
+            </div>
+        </motion.div>
+    );
+};
+
+const CometShower = () => {
+    const [comets, setComets] = useState<number[]>([]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setComets(prev => [...prev, Date.now()]);
+        }, 2000); // Triggers exactly every 2 seconds
+        return () => clearInterval(interval);
+    }, []);
+
+    const removeComet = (id: number) => {
+        setComets(prev => prev.filter(m => m !== id));
+    };
+
+    return (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {comets.map(id => (
+                <Comet key={id} id={id} onFinished={removeComet} />
+            ))}
+        </div>
+    );
+};
+
 // Animated particle background
 const ParticleBackground = () => {
     const [particles, setParticles] = useState<Array<{ x: number; y: number; duration: number; delay: number; size: number }>>([]);
@@ -27,6 +98,7 @@ const ParticleBackground = () => {
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <CometShower />
             {/* Gradient orbs - theme-aware */}
             <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/20 rounded-full blur-[120px] animate-pulse" />
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/3 dark:bg-primary/10 rounded-full blur-[100px] animate-pulse delay-1000" />
