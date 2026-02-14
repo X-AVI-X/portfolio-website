@@ -16,16 +16,17 @@ import {
 import { useState } from "react";
 
 // Map categories to modern glassmorphism icons
+// Map categories to modern glassmorphism icons using primary-rgb for consistency
 const iconMap: Record<string, any> = {
-    "Languages & Core": <Code2 size={20} className="text-blue-400" />,
-    "Frameworks": <Box size={20} className="text-emerald-400" />,
-    "Microservices": <Workflow size={20} className="text-purple-400" />,
-    "Messaging & Real-Time": <Zap size={20} className="text-yellow-400" />,
-    "AI/ML Integration": <Bot size={20} className="text-orange-400" />,
-    "Data & Storage": <Database size={20} className="text-indigo-400" />,
-    "Practices": <ShieldCheck size={20} className="text-red-400" />,
-    "DevOps": <Cloud size={20} className="text-cyan-400" />,
-    "Frontend": <Sparkles size={20} className="text-pink-400" />
+    "Languages & Core": <Code2 size={20} className="text-primary" />,
+    "Frameworks": <Box size={20} className="text-primary" />,
+    "Microservices": <Workflow size={20} className="text-primary" />,
+    "Messaging & Real-Time": <Zap size={20} className="text-primary" />,
+    "AI/ML Integration": <Bot size={20} className="text-primary" />,
+    "Data & Storage": <Database size={20} className="text-primary" />,
+    "Practices": <ShieldCheck size={20} className="text-primary" />,
+    "DevOps": <Cloud size={20} className="text-primary" />,
+    "Frontend": <Sparkles size={20} className="text-primary" />
 };
 
 const SkillChip = ({ name, index }: { name: string; index: number }) => {
@@ -72,7 +73,7 @@ const CategoryCard = ({ category, index }: { category: any; index: number }) => 
             transition={{ duration: 0.5, delay: index * 0.08 }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            className="group relative p-5 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-md hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 flex flex-col min-h-[160px]"
+            className="group relative p-5 rounded-xl border border-primary/10 bg-card/10 backdrop-blur-xl hover:bg-card/20 hover:border-primary/30 transition-all duration-500 flex flex-col min-h-[160px] shadow-[0_0_15px_rgba(var(--primary-rgb),0.02)]"
         >
             {/* Animated Background Abstractions */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-xl">
@@ -157,17 +158,17 @@ const CategoryCard = ({ category, index }: { category: any; index: number }) => 
                             {category.category}
                         </h3>
                         <motion.div
-                            className="h-0.5 bg-gradient-to-r from-primary/40 to-transparent rounded-full"
+                            className="h-0.5 bg-gradient-to-r from-primary to-transparent rounded-full"
                             animate={isHovered ? { width: '100%' } : { width: '40%' }}
                             transition={{ duration: 0.5 }}
                         />
                     </div>
                     <motion.div
-                        className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 shadow-inner"
+                        className="p-2.5 rounded-lg bg-primary/5 border border-primary/10 shadow-inner"
                         animate={isHovered ? {
                             scale: 1.15,
-                            backgroundColor: "rgba(var(--primary-rgb), 0.08)",
-                            borderColor: "rgba(var(--primary-rgb), 0.2)",
+                            backgroundColor: "rgba(var(--primary-rgb), 0.12)",
+                            borderColor: "rgba(var(--primary-rgb), 0.3)",
                             rotate: [0, -5, 5, 0]
                         } : {
                             scale: 1,

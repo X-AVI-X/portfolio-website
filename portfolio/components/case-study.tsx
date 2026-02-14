@@ -27,7 +27,8 @@ const CaseStudy = () => {
                     </p>
                 </motion.div>
 
-                <div className="relative rounded-2xl border border-primary/20 bg-card/20 backdrop-blur-md shadow-[0_0_30px_rgba(var(--primary-rgb),0.1)] overflow-hidden p-8 md:p-12 hover:border-primary/40 transition-all duration-500">
+                <div className="relative rounded-2xl border border-primary/20 bg-card/20 backdrop-blur-xl shadow-[0_0_30px_rgba(var(--primary-rgb),0.05)] overflow-hidden p-8 md:p-12 hover:border-primary/40 transition-all duration-500 group/cs">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover/cs:opacity-100 transition-opacity duration-700" />
                     <div className="absolute top-0 right-0 p-4 opacity-5">
                         <Database size={200} className="text-primary" />
                     </div>

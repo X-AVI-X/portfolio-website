@@ -25,7 +25,7 @@ const ProjectPreview = ({ index }: { index: number }) => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
 
             {/* Abstract Icon */}
-            <div className="absolute bottom-4 right-4 text-primary/20">
+            <div className="absolute bottom-4 right-4 text-primary/10">
                 {icons[index % icons.length]}
             </div>
 
@@ -127,7 +127,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
                     {project.tech.slice(0, isFeatured ? 8 : 4).map((tag: string) => (
                         <span
                             key={tag}
-                            className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-secondary/50 border border-primary/10 text-primary/80"
+                            className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-primary/5 border border-primary/10 text-primary/80"
                         >
                             {tag}
                         </span>

@@ -102,7 +102,7 @@ const ProfileAvatar = ({ show }: { show: boolean }) => (
         <div className="absolute -inset-2 rounded-full border border-dashed border-primary/10 animate-reverse-spin-slow" />
 
         {/* Avatar Container */}
-        <div className="relative w-full h-full rounded-full bg-background border-2 border-primary/50 overflow-hidden flex items-center justify-center terminal-glow">
+        <div className="relative w-full h-full rounded-full bg-background/50 backdrop-blur-sm border-2 border-primary/40 overflow-hidden flex items-center justify-center terminal-glow transition-all duration-700 group-hover:border-primary">
             {/* Profile Photo */}
             <Image
                 src="/profile.png"
@@ -214,13 +214,17 @@ const TerminalHero = () => {
                     className="max-w-4xl mx-auto"
                 >
                     {/* Terminal Window */}
-                    <div className="bg-card/40 backdrop-blur-md rounded-xl border border-border terminal-glow overflow-hidden max-w-lg mx-auto mb-6 shadow-2xl">
+                    <div className="bg-card/40 backdrop-blur-xl rounded-xl border border-primary/20 terminal-glow overflow-hidden max-w-lg mx-auto mb-6 shadow-2xl relative group/terminal">
+                        {/* Interactive Shine */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-primary/5 opacity-0 group-hover/terminal:opacity-100 transition-opacity duration-700 pointer-events-none" />
                         {/* Terminal Header */}
-                        <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-secondary/50">
-                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                            <span className="ml-3 text-[10px] text-muted-foreground font-mono uppercase tracking-widest">
+                        <div className="flex items-center gap-2 px-4 py-3 border-b border-primary/10 bg-secondary/30 relative z-10">
+                            <div className="flex gap-1.5">
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 shadow-[0_0_8px_rgba(234,179,8,0.4)]" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
+                            </div>
+                            <span className="ml-3 text-[10px] text-muted-foreground font-mono uppercase tracking-[0.2em] opacity-60">
                                 system_shell_v1.0
                             </span>
                         </div>
@@ -260,7 +264,7 @@ const TerminalHero = () => {
                         <ProfileAvatar show={showContent} />
 
                         <motion.h1
-                            className="text-5xl md:text-8xl font-bold mb-4 text-glow tracking-tighter"
+                            className="text-6xl md:text-9xl font-bold mb-4 text-glow tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70"
                             animate={showContent ? { y: [20, 0], opacity: [0, 1] } : {}}
                         >
                             {personalInfo.name.toUpperCase()}
@@ -280,10 +284,10 @@ const TerminalHero = () => {
                         </motion.div>
 
                         {/* Stats - Horizontal Row */}
-                        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
-                            <StatCard label="Exp" value={personalInfo.yearsExperience} suffix="+" />
-                            <StatCard label="Services" value={personalInfo.microservicesCount} suffix="+" />
-                            <StatCard label="Reach" value={personalInfo.activeUsers} suffix="+" />
+                        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-16">
+                            <StatCard label="Experience" value={personalInfo.yearsExperience} suffix="Y+" />
+                            <StatCard label="Microservices" value={personalInfo.microservicesCount} suffix="+" />
+                            <StatCard label="Users" value={personalInfo.activeUsers} suffix="+" />
                         </div>
 
                         {/* Links */}
@@ -327,11 +331,12 @@ const TerminalHero = () => {
 };
 
 const StatCard = ({ label, value, suffix = "" }: { label: string; value: number; suffix?: string }) => (
-    <div className="p-4 rounded-lg border border-border bg-card/20 backdrop-blur-sm card-hover">
-        <div className="text-2xl md:text-3xl font-bold text-primary font-mono text-glow mb-1">
+    <div className="p-5 rounded-xl border border-primary/10 bg-card/10 backdrop-blur-lg card-hover relative group/stat">
+        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/stat:opacity-100 transition-opacity rounded-xl" />
+        <div className="text-3xl md:text-4xl font-bold text-primary font-mono text-glow mb-1 relative z-10">
             <AnimatedCounter value={value} suffix={suffix} />
         </div>
-        <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-mono font-bold leading-tight">{label}</div>
+        <div className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-mono font-bold leading-tight relative z-10">{label}</div>
     </div>
 );
 

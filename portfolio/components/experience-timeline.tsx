@@ -12,8 +12,8 @@ const ExperienceCard = ({ item, isActive = false }: { item: any; isActive?: bool
         <motion.div
             className={`relative group rounded-xl border bg-card/40 backdrop-blur-sm transition-all duration-500 flex flex-col overflow-hidden
                 ${isActive
-                    ? 'border-cyan-500/50 bg-cyan-950/10 shadow-[0_0_30px_rgba(0,255,255,0.1)]'
-                    : 'border-white/10 hover:border-cyan-500/30'
+                    ? 'border-primary/50 shadow-[0_0_30px_rgba(var(--primary-rgb),0.1)]'
+                    : 'border-border hover:border-primary/30'
                 }`}
             whileHover={{ y: -5 }}
         >
@@ -25,17 +25,17 @@ const ExperienceCard = ({ item, isActive = false }: { item: any; isActive?: bool
             <div className="p-6 relative z-10">
                 <div className="flex justify-between items-start gap-4 mb-4">
                     <div>
-                        <h3 className={`text-lg font-bold mb-1 ${isActive ? 'text-cyan-400' : 'text-foreground group-hover:text-cyan-400'} transition-colors`}>
+                        <h3 className={`text-lg font-bold mb-1 transition-colors ${isActive ? 'text-primary' : 'text-foreground group-hover:text-primary'}`}>
                             {item.role}
                         </h3>
                         <div className="flex items-center gap-2 text-sm font-mono text-muted-foreground">
-                            <Briefcase size={14} className={isActive ? 'text-cyan-500' : ''} />
-                            <span className={isActive ? 'text-cyan-100' : ''}>{item.company}</span>
+                            <Briefcase size={14} className={isActive ? 'text-primary' : ''} />
+                            <span className={isActive ? 'text-foreground/90' : ''}>{item.company}</span>
                         </div>
                     </div>
                     <span className={`text-[10px] font-mono px-2.5 py-1 rounded-full border whitespace-nowrap ${item.type === 'current'
-                        ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30'
-                        : 'bg-secondary/50 text-muted-foreground border-white/10'
+                        ? 'bg-primary/10 text-primary border-primary/30'
+                        : 'bg-muted/50 text-muted-foreground border-border'
                         }`}>
                         {item.type === 'current' ? 'CURRENT' : item.period.split(' ')[0]}
                     </span>
@@ -63,14 +63,14 @@ const ExperienceCard = ({ item, isActive = false }: { item: any; isActive?: bool
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                 >
-                    <div className="space-y-4 pt-4 border-t border-white/10">
+                    <div className="space-y-4 pt-4 border-t border-border">
                         {item.projects.map((proj: any) => (
                             <div key={proj.name}>
-                                <h4 className="text-xs font-bold text-cyan-400 mb-2 font-mono uppercase tracking-wider flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                <h4 className="text-xs font-bold text-primary mb-2 font-mono uppercase tracking-wider flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                                     {proj.name}
                                 </h4>
-                                <ul className="space-y-1.5 pl-3.5 border-l border-white/10">
+                                <ul className="space-y-1.5 pl-3.5 border-l border-border">
                                     {proj.points.map((p: string, i: number) => (
                                         <li key={i} className="text-xs text-muted-foreground leading-relaxed">
                                             {p}
@@ -84,7 +84,7 @@ const ExperienceCard = ({ item, isActive = false }: { item: any; isActive?: bool
 
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="w-full mt-4 py-2 flex items-center justify-center gap-2 text-xs font-mono text-muted-foreground hover:text-cyan-400 transition-colors border-t border-white/5"
+                    className="w-full mt-4 py-2 flex items-center justify-center gap-2 text-xs font-mono text-muted-foreground hover:text-primary transition-colors border-t border-border/50"
                 >
                     {isExpanded ? 'COLLAPSE DETAILS' : 'EXPAND DETAILS'}
                     <ChevronRight size={12} className={`transform transition-transform ${isExpanded ? '-rotate-90' : 'rotate-90'}`} />
@@ -133,9 +133,9 @@ const ExperienceTimeline = () => {
                         preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#0891b2" stopOpacity="0" />
-                                <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
-                                <stop offset="100%" stopColor="#22d3ee" stopOpacity="0" />
+                                <stop offset="0%" stopColor="var(--primary)" stopOpacity="0" />
+                                <stop offset="50%" stopColor="var(--primary)" stopOpacity="1" />
+                                <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
                             </linearGradient>
                             <filter id="glow">
                                 <feGaussianBlur stdDeviation="4" result="coloredBlur" />
@@ -161,9 +161,10 @@ const ExperienceTimeline = () => {
                         <path
                             d="M 750 630 L 750 150 C 750 150 750 400 250 400"
                             fill="none"
-                            stroke="rgba(6, 182, 212, 0.1)"
+                            stroke="var(--primary)"
                             strokeWidth="12"
                             strokeLinecap="round"
+                            style={{ opacity: 0.05 }}
                         />
 
                         {/* Animated Flow Path */}
@@ -180,7 +181,7 @@ const ExperienceTimeline = () => {
                         />
 
                         {/* Continuous Flow Particles */}
-                        <circle r="6" fill="#22d3ee" filter="url(#glow)">
+                        <circle r="6" fill="var(--primary)" filter="url(#glow)">
                             <animateMotion
                                 dur="3s"
                                 repeatCount="indefinite"
@@ -190,7 +191,7 @@ const ExperienceTimeline = () => {
                                 calcMode="linear"
                             />
                         </circle>
-                        <circle r="4" fill="#a5f3fc" filter="url(#glow)">
+                        <circle r="4" fill="var(--foreground)" filter="url(#glow)" style={{ opacity: 0.5 }}>
                             <animateMotion
                                 dur="3s"
                                 begin="1.5s"
@@ -206,8 +207,8 @@ const ExperienceTimeline = () => {
                     {/* Column 1: ODCL (Latest) */}
                     <div className="relative z-10 order-1 lg:order-1 flex flex-col justify-center h-full">
                         <div className="relative">
-                            <div className="absolute -left-12 top-1/2 w-8 h-[2px] bg-cyan-500/50 hidden lg:block" />
-                            <div className="absolute -left-12 top-1/2 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] -translate-y-1/2 hidden lg:block" />
+                            <div className="absolute -left-12 top-1/2 w-8 h-[2px] bg-primary/50 hidden lg:block" />
+                            <div className="absolute -left-12 top-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_var(--primary)] -translate-y-1/2 hidden lg:block" />
                             <ExperienceCard item={odcl} isActive={true} />
                         </div>
                     </div>
@@ -216,13 +217,13 @@ const ExperienceTimeline = () => {
                     <div className="relative z-10 order-2 lg:order-2 flex flex-col gap-12 lg:gap-24">
                         {/* BJIT */}
                         <div className="relative">
-                            <div className="absolute -right-12 top-1/2 w-8 h-[2px] bg-cyan-500/20 hidden lg:block" />
+                            <div className="absolute -right-12 top-1/2 w-8 h-[2px] bg-primary/20 hidden lg:block" />
                             <ExperienceCard item={bjit} />
                         </div>
 
                         {/* Square */}
                         <div className="relative">
-                            <div className="absolute -right-12 top-1/2 w-8 h-[2px] bg-cyan-500/20 hidden lg:block" />
+                            <div className="absolute -right-12 top-1/2 w-8 h-[2px] bg-primary/20 hidden lg:block" />
                             <ExperienceCard item={square} />
                         </div>
                     </div>

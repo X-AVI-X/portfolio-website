@@ -57,13 +57,14 @@ const Navigation = () => {
                         </a>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-6">
+                        <div className="hidden md:flex items-center gap-8">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
                                     href={item.href}
-                                    className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono relative group"
+                                    className="text-xs text-muted-foreground hover:text-primary transition-all font-mono relative group uppercase tracking-widest"
                                 >
+                                    <span className="opacity-0 group-hover:opacity-100 transition-opacity mr-1.5 text-primary text-[8px]">&lt;/&gt;</span>
                                     {item.label}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                                 </a>
