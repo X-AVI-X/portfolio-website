@@ -10,7 +10,7 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
     useEffect(() => {
         const timer = setTimeout(() => {
             onFinished(id);
-        }, 5500);
+        }, 15500);
         return () => clearTimeout(timer);
     }, [id, onFinished]);
 
@@ -19,10 +19,11 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
     return (
         <motion.div
             initial={{
-                top: `${startOffset - 20}vh`,
-                left: `${startOffset - 20}vw`,
+                top: `${startOffset - 10}vh`,
+                left: `${startOffset - 10}vw`,
                 opacity: 0,
-                rotate: 135
+                rotate: 120,
+                scale: 1 // Using true dimensions now
             }}
             animate={{
                 top: "120vh",
@@ -30,25 +31,69 @@ const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => voi
                 opacity: [0, 1, 1, 0],
             }}
             transition={{
-                duration: 5,
+                duration: 15,
                 ease: "linear",
             }}
             className="absolute z-0 pointer-events-none"
         >
             <div className="relative">
                 {/* Comet Tail - Dust & Ion Trails */}
-                <div className="absolute top-[0px] left-[-25px] w-[50px] h-[700px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[60px] rounded-full" />
-                <div className="absolute top-[0px] left-[-12px] w-[24px] h-[550px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[35px] rounded-full" />
-                <div className="absolute top-[0px] left-[-2px] w-[4px] h-[400px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[4px]" />
+                <div className="absolute top-[0px] left-[-12px] w-[25px] h-[400px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[25px] rounded-full" />
+                <div className="absolute top-[0px] left-[-7px] w-[15px] h-[300px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[15px] rounded-full" />
+                <div className="absolute top-[0px] left-[-1px] w-[2px] h-[225px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[2px]" />
 
-                {/* The Coma - Atmospheric Glow */}
-                <div className="absolute top-[-30px] left-[-30px] w-[60px] h-[60px] bg-primary/20 blur-[30px] rounded-full shadow-[0_0_60px_var(--primary)]" />
+                {/* The Fire Head - Flickering Plasma */}
+                <div className="absolute top-0 left-0">
+                    {/* Core heat bloom */}
+                    <div className="absolute top-[-20px] left-[-20px] w-[40px] h-[40px] bg-primary/30 blur-[20px] rounded-full animate-pulse" />
 
-                {/* The Nucleus - Intense Core */}
-                <div className="absolute top-[-6px] left-[-6px] w-[12px] h-[12px] bg-white rounded-full shadow-[0_0_40px_#fff, 0_0_80px_var(--primary), 0_0_120px_var(--primary)]" />
+                    {/* Liquid Fire Layers */}
+                    {[...Array(5)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute top-[-5px] left-[-5px] w-[10px] h-[10px] bg-white rounded-full blur-[2px] mix-blend-screen"
+                            animate={{
+                                scale: [1, 1.5, 1.2],
+                                opacity: [0.4, 1, 0.6],
+                                y: [0, 5, 2]
+                            }}
+                            transition={{
+                                duration: 0.1 + i * 0.05,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            style={{
+                                boxShadow: '0 0 40px var(--primary), 0 0 80px var(--primary)'
+                            }}
+                        />
+                    ))}
 
-                {/* Sparkle/Flare head */}
-                <div className="absolute top-[0px] left-[0px] w-[1px] h-[1px] bg-white shadow-[0_0_50px_15px_#fff]" />
+                    {/* Licking Flames (Trailing into the tail) */}
+                    {[...Array(3)].map((_, i) => (
+                        <motion.div
+                            key={`flame-${i}`}
+                            className="absolute top-[0px] left-[-5px] w-[10px] h-[40px] bg-gradient-to-b from-white via-primary/60 to-transparent blur-[4px]"
+                            style={{
+                                originY: "top",
+                                borderRadius: "40% 40% 0 0",
+                                rotate: i * 5 - 5
+                            }}
+                            animate={{
+                                height: [60, 120, 80],
+                                skewX: [-10, 10, -10],
+                                opacity: [0.3, 0.7, 0.4]
+                            }}
+                            transition={{
+                                duration: 0.15 + i * 0.1,
+                                repeat: Infinity,
+                                ease: "linear"
+                            }}
+                        />
+                    ))}
+
+                    {/* Intense Flare Tip */}
+                    <div className="absolute top-[-1px] left-[-1px] w-[2px] h-[2px] bg-white rounded-full shadow-[0_0_15px_5px_#fff]" />
+                </div>
             </div>
         </motion.div>
     );
@@ -58,10 +103,22 @@ const CometShower = () => {
     const [comets, setComets] = useState<number[]>([]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        let showerInterval: NodeJS.Timeout;
+
+        // Wait 5 seconds after mount before starting the first comet
+        const startTimer = setTimeout(() => {
             setComets(prev => [...prev, Date.now()]);
-        }, 2000); // Triggers exactly every 2 seconds
-        return () => clearInterval(interval);
+
+            // Then continue at the requested 15s interval
+            showerInterval = setInterval(() => {
+                setComets(prev => [...prev, Date.now()]);
+            }, 15000);
+        }, 5000);
+
+        return () => {
+            clearTimeout(startTimer);
+            if (showerInterval) clearInterval(showerInterval);
+        };
     }, []);
 
     const removeComet = (id: number) => {
