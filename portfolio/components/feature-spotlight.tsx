@@ -83,7 +83,7 @@ const FeatureSpotlight = () => {
                                 </div>
 
                                 {/* Code Content */}
-                                <div className="p-6 font-mono text-sm overflow-x-auto text-xs md:text-sm leading-relaxed text-gray-300">
+                                <div className="p-6 font-mono text-sm overflow-x-auto text-xs md:text-sm leading-relaxed text-gray-300 cyber-scrollbar">
                                     <pre className="language-java">
                                         <code dangerouslySetInnerHTML={{
                                             __html: spotlight.codeSnippet

@@ -299,3 +299,41 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Custom Stylish Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.85 0.15 225 / 0.2);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(0.85 0.15 225 / 0.3);
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.85 0.15 225 / 0.2) transparent;
+}
