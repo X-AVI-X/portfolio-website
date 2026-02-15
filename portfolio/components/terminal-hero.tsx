@@ -56,7 +56,7 @@ const ProfileAvatar = ({ show }: { show: boolean }) => (
         initial={{ scale: 0, opacity: 0 }}
         animate={show ? { scale: 1, opacity: 1 } : {}}
         transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.2 }}
-        className="relative w-40 h-40 mx-auto mb-6"
+        className="relative w-40 h-40 mx-auto mb-6 z-50"
     >
         {/* Outer Ring */}
         <div className="absolute inset-0 rounded-full border border-primary/20 animate-spin-slow" />
