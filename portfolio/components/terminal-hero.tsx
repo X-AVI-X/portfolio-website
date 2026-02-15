@@ -6,198 +6,16 @@ import { Github, Linkedin, Mail, MapPin, Terminal, MousePointer2 } from "lucide-
 import { useEffect, useState, useRef, useMemo } from "react";
 import Image from "next/image";
 
-const Comet = ({ id, onFinished }: { id: number; onFinished: (id: number) => void }) => {
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            onFinished(id);
-        }, 15500);
-        return () => clearTimeout(timer);
-    }, [id, onFinished]);
 
-    const config = useMemo(() => {
-        const startEdge = Math.floor(Math.random() * 4); // 0:T, 1:B, 2:L, 3:R
-        let startX, startY, endX, endY;
 
-        if (startEdge === 0) { startX = Math.random() * 100; startY = -20; }
-        else if (startEdge === 1) { startX = Math.random() * 100; startY = 120; }
-        else if (startEdge === 2) { startX = -20; startY = Math.random() * 100; }
-        else { startX = 120; startY = Math.random() * 100; }
 
-        let endEdge = Math.floor(Math.random() * 3);
-        if (endEdge >= startEdge) endEdge++;
 
-        if (endEdge === 0) { endX = Math.random() * 100; endY = -20; }
-        else if (endEdge === 1) { endX = Math.random() * 100; endY = 120; }
-        else if (endEdge === 2) { endX = -20; endY = Math.random() * 100; }
-        else { endX = 120; endY = Math.random() * 100; }
-
-        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI + 90;
-        return { startX, startY, endX, endY, angle };
-    }, []);
-
-    return (
-        <motion.div
-            initial={{
-                top: `${config.startY}vh`,
-                left: `${config.startX}vw`,
-                opacity: 0,
-                rotate: config.angle,
-                scale: 1
-            }}
-            animate={{
-                top: `${config.endY}vh`,
-                left: `${config.endX}vw`,
-                opacity: [0, 1, 1, 0],
-            }}
-            transition={{
-                duration: 15,
-                ease: "linear",
-            }}
-            className="absolute z-0 pointer-events-none"
-        >
-            <div className="relative">
-                {/* Comet Tail - Dust & Ion Trails */}
-                <div className="absolute top-[0px] left-[-6px] w-[12px] h-[160px] bg-gradient-to-t from-transparent via-primary/10 to-transparent blur-[15px] rounded-full" />
-                <div className="absolute top-[0px] left-[-4px] w-[8px] h-[120px] bg-gradient-to-t from-transparent via-primary/20 to-primary/40 blur-[8px] rounded-full" />
-                <div className="absolute top-[0px] left-[-1px] w-[1px] h-[90px] bg-gradient-to-t from-transparent via-primary/70 to-white/95 rounded-full blur-[1px]" />
-
-                {/* The Fire Head - Flickering Plasma */}
-                <div className="absolute top-0 left-0">
-                    {/* Core heat bloom */}
-                    <div className="absolute top-[-8px] left-[-8px] w-[16px] h-[16px] bg-primary/30 blur-[10px] rounded-full animate-pulse" />
-
-                    {/* Liquid Fire Layers */}
-                    {[...Array(5)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute top-[-3px] left-[-3px] w-[6px] h-[6px] bg-white rounded-full blur-[1px] mix-blend-screen"
-                            animate={{
-                                scale: [1, 1.5, 1.2],
-                                opacity: [0.4, 1, 0.6],
-                                y: [0, 5, 2]
-                            }}
-                            transition={{
-                                duration: 0.1 + i * 0.05,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            style={{
-                                boxShadow: '0 0 40px var(--primary), 0 0 80px var(--primary)'
-                            }}
-                        />
-                    ))}
-
-                    {/* Licking Flames (Trailing into the tail) */}
-                    {[...Array(3)].map((_, i) => (
-                        <motion.div
-                            key={`flame-${i}`}
-                            className="absolute top-[0px] left-[-3px] w-[6px] h-[20px] bg-gradient-to-b from-white via-primary/60 to-transparent blur-[3px]"
-                            style={{
-                                originY: "top",
-                                borderRadius: "40% 40% 0 0",
-                                rotate: i * 5 - 5
-                            }}
-                            animate={{
-                                height: [25, 50, 35],
-                                skewX: [-10, 10, -10],
-                                opacity: [0.3, 0.7, 0.4]
-                            }}
-                            transition={{
-                                duration: 0.15 + i * 0.1,
-                                repeat: Infinity,
-                                ease: "linear"
-                            }}
-                        />
-                    ))}
-
-                    {/* Intense Flare Tip */}
-                    <div className="absolute top-[-1px] left-[-1px] w-[1px] h-[1px] bg-white rounded-full shadow-[0_0_8px_3px_#fff]" />
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-
-const CometShower = () => {
-    const [activeCometId, setActiveCometId] = useState<number | null>(null);
-
-    const spawnComet = () => setActiveCometId(Date.now());
-
-    const handleCometFinished = () => {
-        setActiveCometId(null);
-        // Spawn next comet 45 seconds after the previous one disappears
-        setTimeout(spawnComet, 45000);
-    };
-
-    useEffect(() => {
-        // Wait 15 seconds after mount before starting the first comet
-        const startTimer = setTimeout(spawnComet, 15000);
-        return () => clearTimeout(startTimer);
-    }, []);
-
-    return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {activeCometId && (
-                <Comet
-                    key={activeCometId}
-                    id={activeCometId}
-                    onFinished={handleCometFinished}
-                />
-            )}
-        </div>
-    );
-};
-
-// Animated particle background
-const ParticleBackground = () => {
-    const [particles, setParticles] = useState<Array<{ x: number; y: number; duration: number; delay: number; size: number }>>([]);
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-        const newParticles = [...Array(30)].map(() => ({
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-            duration: 5 + Math.random() * 8,
-            delay: Math.random() * 2,
-            size: 1 + Math.random() * 2,
-        }));
-        setParticles(newParticles);
-    }, []);
-
-    if (!mounted) return null;
-
+const HeroGlow = () => {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <CometShower />
-            {/* Gradient orbs - theme-aware */}
-            <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 dark:bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/3 dark:bg-primary/10 rounded-full blur-[100px] animate-pulse delay-1000" />
-
-            {/* Floating particles */}
-            {particles.map((p, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute bg-primary/30 rounded-full"
-                    style={{
-                        left: `${p.x}%`,
-                        top: `${p.y}%`,
-                        width: p.size,
-                        height: p.size
-                    }}
-                    animate={{
-                        y: [0, -30, 30, -15, 0],
-                        opacity: [0.1, 0.5, 0.1],
-                        scale: [1, 1.5, 1],
-                    }}
-                    transition={{
-                        duration: p.duration,
-                        repeat: Infinity,
-                        delay: p.delay,
-                        ease: "easeInOut"
-                    }}
-                />
-            ))}
+            {/* Gradient orbs - theme-aware & Subtler localized atmosphere */}
+            <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[120px] animate-pulse-slow" />
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow delay-2000" />
         </div>
     );
 };
@@ -331,12 +149,9 @@ const TerminalHero = () => {
             ref={sectionRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-            className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background perspective-1000"
+            className="min-h-screen flex items-center justify-center relative overflow-hidden bg-transparent perspective-1000"
         >
-            <ParticleBackground />
-
-            {/* Grid Overlay */}
-            <div className="absolute inset-0 cyber-grid opacity-[0.03] pointer-events-none" />
+            <HeroGlow />
 
             <div className="container mx-auto px-6 py-20 relative z-10">
                 <motion.div

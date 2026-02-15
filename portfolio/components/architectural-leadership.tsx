@@ -13,10 +13,7 @@ const ArchitecturalLeadership = () => {
     ];
 
     return (
-        <section id="leadership" className="py-24 px-6 relative overflow-hidden bg-background">
-            {/* Ambient Glow */}
-            <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-
+        <section id="leadership" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

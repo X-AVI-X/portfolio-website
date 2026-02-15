@@ -9,10 +9,7 @@ const WritingLog = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <section id="writing" className="py-24 px-6 relative overflow-hidden bg-background">
-            {/* Ambient Background */}
-            <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-
+        <section id="writing" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-5xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

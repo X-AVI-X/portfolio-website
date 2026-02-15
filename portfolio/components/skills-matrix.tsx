@@ -55,7 +55,7 @@ const CategoryCard = ({ category, index }: { category: any; index: number }) => 
 
     const gradients = [
         "from-blue-500/10 via-blue-500/5 to-transparent",
-        "from-emerald-500/10 via-emerald-500/5 to-transparent",
+        "from-blue-600/10 via-blue-600/5 to-transparent",
         "from-purple-500/10 via-purple-500/5 to-transparent",
         "from-yellow-500/10 via-yellow-500/5 to-transparent",
         "from-orange-500/10 via-orange-500/5 to-transparent",
@@ -192,11 +192,7 @@ const CategoryCard = ({ category, index }: { category: any; index: number }) => 
 
 const SkillsMatrix = () => {
     return (
-        <section id="skills" className="py-24 px-6 relative overflow-hidden bg-background">
-            {/* Ambient Background Elements */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="skills" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

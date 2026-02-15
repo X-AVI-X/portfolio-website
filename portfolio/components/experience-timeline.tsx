@@ -135,13 +135,7 @@ const ExperienceTimeline = () => {
     const square = experience[2];
 
     return (
-        <section id="experience" className="py-24 px-6 relative overflow-hidden bg-muted/20">
-            {/* Background Gradients */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
-            </div>
-
+        <section id="experience" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-7xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -268,7 +262,7 @@ const ExperienceTimeline = () => {
                         <div className="flex flex-col lg:flex-row items-center justify-end lg:pr-[5%]">
                             <div className="w-full lg:w-[65%] relative group">
                                 <div className="absolute -left-4 top-1/2 w-4 h-[1px] bg-primary/20 hidden lg:block" />
-                                <div className="absolute -left-6 top-1/2 w-3 h-3 rounded-full bg-cyan-400/30 border border-cyan-400 animate-pulse hidden lg:block -translate-y-1/2" />
+                                <div className="absolute -left-6 top-1/2 w-3 h-3 rounded-full bg-blue-500/30 border border-blue-500 animate-pulse hidden lg:block -translate-y-1/2" />
                                 <ExperienceCard item={square} />
                             </div>
                         </div>
@@ -277,7 +271,7 @@ const ExperienceTimeline = () => {
                         <div className="flex flex-col lg:flex-row items-center justify-start lg:pl-[5%]">
                             <div className="w-full lg:w-[65%] relative group">
                                 <div className="absolute -right-4 top-1/2 w-4 h-[1px] bg-primary/20 hidden lg:block" />
-                                <div className="absolute -right-6 top-1/2 w-3 h-3 rounded-full bg-cyan-400/30 border border-cyan-400 animate-pulse hidden lg:block -translate-y-1/2" />
+                                <div className="absolute -right-6 top-1/2 w-3 h-3 rounded-full bg-blue-500/30 border border-blue-500 animate-pulse hidden lg:block -translate-y-1/2" />
                                 <ExperienceCard item={bjit} />
                             </div>
                         </div>

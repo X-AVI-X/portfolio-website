@@ -24,11 +24,7 @@ const FeatureSpotlight = () => {
     };
 
     return (
-        <section id="spotlight" className="py-24 px-6 relative overflow-hidden bg-muted/20">
-            {/* Background Neural Grid */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--alpha-primary)_1px,_transparent_1px)] bg-[size:20px_20px] opacity-10" />
-            <div className="absolute -left-20 top-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-
+        <section id="spotlight" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-6xl relative z-10">
 
                 <motion.div

@@ -6,10 +6,7 @@ import { GraduationCap, Award, ExternalLink, Calendar, MapPin, BookOpen } from "
 
 const Education = () => {
     return (
-        <section id="education" className="py-24 px-6 relative overflow-hidden bg-background">
-            {/* Ambient Glow */}
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="education" className="py-24 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

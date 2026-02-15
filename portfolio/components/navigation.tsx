@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, Terminal, Moon, Sun } from "lucide-react";
 
 const navItems = [
@@ -13,10 +13,111 @@ const navItems = [
     { label: "Contact", href: "#contact" },
 ];
 
+// Theme color presets — each is an OKLCH hue degree
+const colorThemes = [
+    { name: "Tron Blue", hue: 225, preview: "#22d3ee" },
+    { name: "Electric Violet", hue: 280, preview: "#a855f7" },
+    { name: "Neon Rose", hue: 350, preview: "#f43f5e" },
+    { name: "Solar Gold", hue: 85, preview: "#eab308" },
+    { name: "Emerald", hue: 155, preview: "#10b981" },
+    { name: "Hot Orange", hue: 40, preview: "#f97316" },
+];
+
+function applyColorTheme(hue: number, isDark: boolean) {
+    const root = document.documentElement;
+    if (isDark) {
+        root.style.setProperty("--cyber", `oklch(0.85 0.2 ${hue})`);
+        root.style.setProperty("--cyber-glow", `oklch(0.85 0.2 ${hue} / 30%)`);
+        root.style.setProperty("--primary", `oklch(0.85 0.15 ${hue})`);
+        root.style.setProperty("--ring", `oklch(0.85 0.2 ${hue})`);
+        root.style.setProperty("--chart-1", `oklch(0.85 0.2 ${hue})`);
+    } else {
+        root.style.setProperty("--cyber", `oklch(0.65 0.2 ${hue})`);
+        root.style.setProperty("--cyber-glow", `oklch(0.65 0.2 ${hue} / 20%)`);
+        root.style.setProperty("--primary", `oklch(0.6 0.2 ${hue})`);
+        root.style.setProperty("--ring", `oklch(0.6 0.2 ${hue})`);
+        root.style.setProperty("--chart-1", `oklch(0.6 0.2 ${hue})`);
+    }
+}
+
+const ColorPicker = ({ activeHue, onSelect }: { activeHue: number; onSelect: (hue: number) => void }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (ref.current && !ref.current.contains(e.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const activeTheme = colorThemes.find(t => t.hue === activeHue) || colorThemes[0];
+
+    return (
+        <div className="relative" ref={ref}>
+            <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-[34px] h-[34px] rounded-lg border border-border hover:border-primary/50 transition-all flex items-center justify-center"
+                title="Change accent color"
+            >
+                <div
+                    className="w-4 h-4 rounded-full ring-2 ring-white/20 shadow-[0_0_8px_var(--primary)]"
+                    style={{ backgroundColor: activeTheme.preview }}
+                />
+            </motion.button>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-0 top-full mt-2 p-3 rounded-xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl z-50 min-w-[180px]"
+                    >
+                        <div className="text-[9px] font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2.5 px-1">Accent Color</div>
+                        <div className="grid grid-cols-3 gap-2">
+                            {colorThemes.map((theme) => (
+                                <motion.button
+                                    key={theme.hue}
+                                    whileHover={{ scale: 1.15 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={() => {
+                                        onSelect(theme.hue);
+                                        setIsOpen(false);
+                                    }}
+                                    className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all ${activeHue === theme.hue ? 'bg-primary/10 ring-1 ring-primary/40' : 'hover:bg-white/5'}`}
+                                    title={theme.name}
+                                >
+                                    <div
+                                        className={`w-6 h-6 rounded-full shadow-lg transition-shadow ${activeHue === theme.hue ? 'ring-2 ring-white/40 shadow-[0_0_12px_3px]' : 'ring-1 ring-white/10'}`}
+                                        style={{
+                                            backgroundColor: theme.preview,
+                                            boxShadow: activeHue === theme.hue ? `0 0 12px ${theme.preview}` : undefined
+                                        }}
+                                    />
+                                    <span className={`text-[8px] font-mono tracking-wider ${activeHue === theme.hue ? 'text-primary' : 'text-muted-foreground/60'}`}>
+                                        {theme.name.split(' ')[0]}
+                                    </span>
+                                </motion.button>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
 const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDark, setIsDark] = useState(true);
+    const [activeHue, setActiveHue] = useState(225); // Default: Tron Blue
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,9 +134,16 @@ const Navigation = () => {
         } else {
             document.documentElement.classList.remove("dark");
         }
-    }, [isDark]);
+        // Re-apply color theme when light/dark changes
+        applyColorTheme(activeHue, isDark);
+    }, [isDark, activeHue]);
 
     const toggleTheme = () => setIsDark(!isDark);
+
+    const handleColorSelect = (hue: number) => {
+        setActiveHue(hue);
+        applyColorTheme(hue, isDark);
+    };
 
     return (
         <>
@@ -79,6 +187,9 @@ const Navigation = () => {
                                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
                             </motion.button>
 
+                            {/* Color Picker — immediately right of theme toggle */}
+                            <ColorPicker activeHue={activeHue} onSelect={handleColorSelect} />
+
                             <a
                                 href="/Avijit_Paul_Resume.pdf"
                                 target="_blank"
@@ -97,6 +208,10 @@ const Navigation = () => {
                             >
                                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
                             </motion.button>
+
+                            {/* Color Picker — immediately right of theme toggle on mobile too */}
+                            <ColorPicker activeHue={activeHue} onSelect={handleColorSelect} />
+
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                                 className="text-foreground p-2"

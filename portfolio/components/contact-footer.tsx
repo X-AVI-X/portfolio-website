@@ -46,14 +46,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-32 px-6 relative overflow-hidden bg-background">
-            {/* Dynamic Background Elements */}
-            <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
-
-            {/* Futuristic Grid Overlay */}
-            <div className="absolute inset-0 cyber-grid opacity-[0.05] pointer-events-none" />
-
+        <section id="contact" className="py-32 px-6 relative overflow-hidden bg-transparent">
             <div className="container mx-auto max-w-5xl relative z-10">
                 <div className="flex flex-col md:flex-row gap-16 items-start">
                     {/* Left: Text Content & Status */}

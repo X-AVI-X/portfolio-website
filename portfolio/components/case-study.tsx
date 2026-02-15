@@ -6,10 +6,7 @@ import { Database, Zap, Activity } from "lucide-react";
 
 const CaseStudy = () => {
     return (
-        <section id="casestudy" className="py-24 px-6 relative bg-background overflow-hidden ">
-            {/* Ambient Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
-
+        <section id="casestudy" className="py-24 px-6 relative bg-transparent overflow-hidden ">
             <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}

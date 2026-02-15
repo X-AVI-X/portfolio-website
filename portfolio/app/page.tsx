@@ -11,10 +11,12 @@ import CaseStudy from "@/components/case-study";
 import WritingLog from "@/components/writing-log";
 
 import GlobalSidebars from "@/components/global-sidebars";
+import Atmosphere from "@/components/atmosphere";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background relative">
+    <main className="min-h-screen bg-background relative overflow-hidden">
+      <Atmosphere />
       <GlobalSidebars />
       <Navigation />
       <TerminalHero />
