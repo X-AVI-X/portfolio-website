@@ -1,15 +1,15 @@
 export const personalInfo = {
     name: "Avijit Paul",
-    title: "Backend Engineer",
-    tagline: "Java · Spring Boot · Microservices · Distributed Systems",
+    title: "Backend & Platform Engineer",
+    tagline: "Architecting resilient systems for 100+ enterprise users · Reducing operational overhead by 35%",
     location: "Dhaka, Bangladesh",
     remote: true,
     phone: "+880 1712-768758",
     email: "avijit.paul.cs@gmail.com",
     linkedin: "https://linkedin.com/in/avijitpaulavi",
     github: "https://github.com/X-AVI-X",
-    yearsExperience: 2,
-    microservicesCount: 8,
+    yearsExperience: 3,
+    microservicesCount: 12,
     activeUsers: 100,
 };
 
@@ -110,28 +110,28 @@ export const experience = [
 
 export const projects = [
     {
-        title: "Personalized Health Management System (BJIT)",
+        title: "Personalized Health Management System",
         tech: ["Spring Cloud", "Eureka", "Feign", "Gateway", "Config Server"],
         github: "https://github.com/X-AVI-X/Personalized-Health-Management-System-Microservice",
-        description: "Built 6+ distributed services using Spring Cloud Gateway & Eureka. Implemented OpenFeign with token propagation and Config Server for runtime updates.",
+        description: "Orchestrated 6+ distributed services with central configuration and intelligent routing. Focused on high-availability and horizontal scalability.",
     },
     {
-        title: "Hospital Billing System (Square Health)",
+        title: "Hospital Billing System",
         tech: ["Spring Boot", "JWT", "JPA", "MySQL"],
         github: "https://github.com/X-AVI-X/Billing-System-For-Hospitals-Backend",
-        description: "Engineered multi-module billing engine with complex discount logic. Built stateless JWT security and real-time admin dashboards using Spring Data Projections.",
+        description: "High-volume transactional engine with multi-module architecture. Implemented stateless security and optimized query execution plans.",
     },
     {
         title: "Online Book Library",
         tech: ["Spring Boot", "JPA", "MySQL", "REST API"],
         github: "https://github.com/X-AVI-X/Online-Book-Library",
-        description: "Clean architecture with domain-driven design, role-based access (Customer/Admin), and book reservation system.",
+        description: "Applied Domain-Driven Design principles to a complex inventory and reservation system, ensuring strict business logic isolation.",
     },
     {
-        title: "Bomber-man Game",
-        tech: ["Java", "PApplet", "2D Graphics", "AI Pathfinding"],
+        title: "Bomber-man Game Engine",
+        tech: ["Java", "PApplet", "A* Algorithm"],
         github: "https://github.com/X-AVI-X/Bomberman",
-        description: "Dynamic 2D game with destructible environments, enemy AI pathfinding, and strategic bomb mechanics.",
+        description: "Engineered real-time AI pathfinding and destructible environment physics in a custom 2D engine.",
     },
 ];
 
@@ -155,8 +155,9 @@ export const education = {
         {
             name: "IELTS Academic",
             issuer: "British Council",
-            year: "2023",
+            year: "2025",
             link: "#",
+            score: "Overall 7.5 (No band less than 6.5)",
         },
     ],
 };
@@ -435,5 +436,32 @@ public Meeting findOrCreateOneToOneChat(MeetingDTO dto) {
     return saveOrUpdate(dto);
 } `
 };
+
+export const writing = [
+    {
+        id: "sys-001",
+        title: "Optimizing Next.js for 3D Rendering",
+        date: "2025-02-15",
+        category: "Performance",
+        summary: "How I reduced First Contentful Paint (FCP) by 40% using Framer Motion's hardware acceleration instead of heavy WebGL libraries for portfolio animations.",
+        link: "#",
+    },
+    {
+        id: "sys-002",
+        title: "Refactoring Monolithic Themes",
+        date: "2025-01-20",
+        category: "System Design",
+        summary: "Migrating from hardcoded Tailwind classes to a semantic CSS variable system (The 'Glow' Theme) to support instant runtime theming.",
+        link: "#",
+    },
+    {
+        id: "sys-003",
+        title: "The Case for Server-Sent Events (SSE)",
+        date: "2024-12-10",
+        category: "Backend",
+        summary: "Why I chose SSE over WebSockets for the Neural Meeting Architect's unidirectional token streaming pipeline.",
+        link: "#",
+    }
+];
 
 export const spotlights = [featureSpotlight, geoSpotlight, securitySpotlight, messengerSpotlight, schedulerSpotlight];

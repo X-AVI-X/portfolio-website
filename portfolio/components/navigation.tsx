@@ -9,6 +9,7 @@ const navItems = [
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
+    { label: "Logs", href: "#writing" },
     { label: "Contact", href: "#contact" },
 ];
 
@@ -43,8 +44,8 @@ const Navigation = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                        ? "bg-background/80 backdrop-blur-md border-b border-border"
-                        : "bg-transparent"
+                    ? "bg-background/80 backdrop-blur-md border-b border-border"
+                    : "bg-transparent"
                     }`}
             >
                 <div className="container mx-auto px-6 py-4">
@@ -56,13 +57,14 @@ const Navigation = () => {
                         </a>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-6">
+                        <div className="hidden md:flex items-center gap-8">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
                                     href={item.href}
-                                    className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono relative group"
+                                    className="text-xs text-muted-foreground hover:text-primary transition-all font-mono relative group uppercase tracking-widest"
                                 >
+                                    <span className="opacity-0 group-hover:opacity-100 transition-opacity mr-1.5 text-primary text-[8px]">&lt;/&gt;</span>
                                     {item.label}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                                 </a>
