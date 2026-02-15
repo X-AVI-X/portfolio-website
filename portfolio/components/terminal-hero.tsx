@@ -437,7 +437,7 @@ const TerminalHero = () => {
                         <div className="flex flex-wrap justify-center gap-4">
                             <SocialButton href={personalInfo.github} icon={<Github size={18} />} label="SOURCE" />
                             <SocialButton href={personalInfo.linkedin} icon={<Linkedin size={18} />} label="NETWORK" />
-                            <SocialButton href={`mailto:${personalInfo.email}`} icon={<Mail size={18} />} label="CONNECT" />
+                            <SocialButton href="#contact" icon={<Mail size={18} />} label="CONNECT" />
                             <div className="flex items-center gap-2 px-4 py-2 text-muted-foreground text-xs font-mono border border-transparent">
                                 <MapPin size={14} className="text-primary" />
                                 <span>{personalInfo.location.toUpperCase()}</span>
